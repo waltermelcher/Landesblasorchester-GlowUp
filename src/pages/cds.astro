@@ -35,7 +35,7 @@ const rest = releases.filter((r) => !r.featured);
     <div class="wrap">
       <!-- Featured -->
       <div class="surface card-pad" data-reveal style="display:grid;grid-template-columns:280px 1fr;gap:clamp(1.5rem,4vw,3rem);align-items:center;margin-bottom:2.5rem">
-        <img src={url('/images/' + featured.cover)} alt={featured.title} style="border-radius:14px;box-shadow:var(--shadow)" />
+        <img src={url('/images/' + featured.cover)} alt={featured.title} style="box-shadow:var(--shadow)" />
         <div>
           <span class="tag">Neuerscheinung</span>
           <h2 style="margin:0.8rem 0 0.4rem">{featured.title}</h2>
@@ -51,11 +51,11 @@ const rest = releases.filter((r) => !r.featured);
       <div class="grid grid-3">
         {rest.map((r, i) => (
           <div class="card card-pad" data-reveal style={`--delay:${(i % 3) * 0.06}s`}>
-            <h3 style="color:#fff;font-size:1.15rem">{r.title}</h3>
+            <h3 style="color:var(--ink);font-size:1.15rem">{r.title}</h3>
             <p style="color:var(--wine-soft);font-size:0.88rem;margin-top:0.3rem">{r.cond} · {r.year}</p>
             <p style="font-size:0.92rem;margin-top:0.6rem">{r.desc}</p>
             <div style="display:flex;justify-content:space-between;align-items:center;margin-top:1rem;padding-top:0.9rem;border-top:1px solid var(--line)">
-              <span style="font-family:var(--font-display);font-weight:800;color:#fff;font-size:1.3rem">{r.price}</span>
+              <span style="font-family:var(--font-display);font-weight:800;color:var(--ink);font-size:1.3rem">{r.price}</span>
               <a class="link-wine" style="font-weight:600" href={`mailto:cd.verkauf@landesblasorchester.de?subject=Bestellung%20${encodeURIComponent(r.title)}`}>Bestellen →</a>
             </div>
           </div>

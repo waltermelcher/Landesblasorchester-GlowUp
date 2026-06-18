@@ -25,7 +25,7 @@ const streams = [
   <section class="section">
     <div class="wrap">
       <div class="surface card-pad" data-reveal style="display:grid;grid-template-columns:300px 1fr;gap:clamp(1.5rem,4vw,3rem);align-items:center;margin-bottom:2.5rem">
-        <img src={url('/images/wildflowers-cover.png')} alt="Wildflowers Cover" style="border-radius:14px;box-shadow:var(--shadow)" />
+        <img src={url('/images/wildflowers-cover.png')} alt="Wildflowers Cover" style="box-shadow:var(--shadow)" />
         <div>
           <h2>Wildflowers — Junge Werke aus Europa</h2>
           <p style="margin-top:0.8rem">Jede Komposition entstand nach 2014 und stammt aus einem anderen europäischen Land. Das Orchester führte das Programm im Juli 2024 in Südkorea auf und leistete so einen Beitrag zum internationalen Kulturaustausch. Live aufgenommen in der Stadthalle Göppingen am 7. Juli 2024 (Tontechnik: Steffen Burkhardt).</p>
@@ -42,7 +42,7 @@ const streams = [
           <div class="surface card-pad" data-reveal style={`--delay:${i * 0.05}s;display:grid;grid-template-columns:auto 1fr;gap:1.4rem`}>
             <div class="avatar" aria-hidden="true">{String(i + 1)}</div>
             <div>
-              <h3 style="color:#fff">{w.t}</h3>
+              <h3 style="color:var(--ink)">{w.t}</h3>
               <p style="color:var(--wine-soft);font-weight:600;margin-top:0.2rem">{w.c} <span class="muted" style="font-weight:400">· {w.land}</span></p>
               <p style="margin-top:0.5rem">{w.d}</p>
             </div>

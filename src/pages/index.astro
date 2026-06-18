@@ -63,7 +63,7 @@ const news = [
             <div class="card-media"><img src={url('/images/' + n.img)} alt={n.title} /></div>
             <div class="card-pad">
               <span class="tag">{n.tag}</span>
-              <h3 style="margin:0.8rem 0 0.5rem;color:#fff;font-size:1.2rem">{n.title}</h3>
+              <h3 style="margin:0.8rem 0 0.5rem;color:var(--ink);font-size:1.2rem">{n.title}</h3>
               <p style="font-size:0.95rem">{n.text}</p>
               <span class="link-wine" style="display:inline-block;margin-top:0.9rem;font-weight:600">Weiterlesen →</span>
             </div>
@@ -106,8 +106,8 @@ const news = [
   <section class="section" style="padding-top:0">
     <div class="wrap">
       <div class="surface" style="overflow:hidden">
-        <div class="hero-grid" style="align-items:stretch;gap:0">
-          <div style="padding:clamp(2rem,5vw,3.5rem)">
+        <div class="hero-grid" style="align-items:center">
+          <div style="padding:clamp(1.5rem,4vw,2.5rem) clamp(1.5rem,4vw,2.5rem) clamp(1.5rem,4vw,2.5rem) 0">
             <p class="eyebrow" data-reveal>Über das LBO</p>
             <h2 data-reveal style="margin-top:0.7rem">Eines der erfolgreichsten Blasorchester Deutschlands</h2>
             <p data-reveal style="margin-top:1.1rem">Gegründet 1978, vereint das Landesblasorchester Baden-Württemberg rund 85 hochqualifizierte Musiker:innen aus dem ganzen Land. In intensiven Probenphasen entstehen Programme von Originalkompositionen über Klassik-Bearbeitungen bis zu Uraufführungen — preisgekrönt auf den großen internationalen Bühnen.</p>
@@ -128,7 +128,7 @@ const news = [
   <section class="section" style="padding-top:0">
     <div class="wrap">
       <div class="surface card-pad" style="display:grid;grid-template-columns:280px 1fr;gap:clamp(1.5rem,4vw,3rem);align-items:center">
-        <img src={url('/images/wildflowers-cover.png')} alt="Wildflowers Albumcover" style="border-radius:14px;box-shadow:var(--shadow)" data-reveal />
+        <img src={url('/images/wildflowers-cover.png')} alt="Wildflowers Albumcover" style="box-shadow:var(--shadow)" data-reveal />
         <div data-reveal style="--delay:.08s">
           <span class="tag">Neue Aufnahme · 2024</span>
           <h2 style="margin:0.9rem 0 0.6rem">Wildflowers — Junge Werke aus Europa</h2>

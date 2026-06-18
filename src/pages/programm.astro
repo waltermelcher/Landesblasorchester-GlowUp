@@ -23,7 +23,7 @@ const pieces = [
         <div class="surface card-pad" data-reveal style={`--delay:${i * 0.05}s;display:grid;grid-template-columns:auto 1fr;gap:1.4rem;align-items:start`}>
           <div class="avatar" aria-hidden="true">{String(i + 1)}</div>
           <div>
-            <h3 style="color:#fff;font-size:1.3rem">{p.title} <span style="color:var(--fg-mut);font-weight:500;font-size:0.95rem">({p.year})</span></h3>
+            <h3 style="color:var(--ink);font-size:1.3rem">{p.title} <span style="color:var(--fg-mut);font-weight:500;font-size:0.95rem">({p.year})</span></h3>
             <p style="color:var(--wine-soft);margin-top:0.25rem;font-weight:600">{p.composer} <span class="muted" style="font-weight:400">{p.life}</span></p>
             <p style="margin-top:0.6rem">{p.desc}</p>
           </div>

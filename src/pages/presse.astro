@@ -20,7 +20,7 @@ const materials = [
         {materials.map((m, i) => (
           <div class="card card-pad" data-reveal style={`--delay:${(i % 2) * 0.06}s`}>
             <span class="tag">Download</span>
-            <h3 style="color:#fff;margin-top:0.8rem">{m.h}</h3>
+            <h3 style="color:var(--ink);margin-top:0.8rem">{m.h}</h3>
             <p style="margin-top:0.5rem">{m.t}</p>
             <p class="muted" style="font-size:0.82rem;margin-top:0.8rem">{m.meta}</p>
           </div>
