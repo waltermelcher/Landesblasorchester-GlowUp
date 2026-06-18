@@ -65,6 +65,19 @@ export const nav: NavItem[] = [
   { label: 'Kontakt', href: '/kontakt' },
 ];
 
+/* -------------------------------------------------------------------------
+   SEO / Indexierung — automatisch nach Deploy-Ziel
+   Staging  = GitHub-Pages-Projektseite (base-Pfad gesetzt)  -> noindex
+   Produktion = Root-/Custom-Domain (base '/')               -> index
+   Schaltet automatisch um, sobald beim Domain-Umzug `base` in
+   astro.config.mjs auf '/' steht (für eine Root-Domain ohnehin nötig).
+   ------------------------------------------------------------------------- */
+export const isProductionBuild =
+  (import.meta.env.BASE_URL || '/').replace(/\/+$/, '') === '';
+
+/** Hosts/Muster, die immer als Vorschau gelten und nie indexiert werden (Laufzeit-Schutz). */
+export const previewHostPatterns = ['github.io', 'localhost', '127.0.0.1', '.pages.dev', '.netlify.app'];
+
 export const socials = [
   { label: 'YouTube', href: 'https://www.youtube.com/user/landesblasorchester' },
   { label: 'Facebook', href: 'https://www.facebook.com/Landesblasorchester/' },
