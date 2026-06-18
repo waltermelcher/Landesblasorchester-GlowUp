@@ -11,3 +11,6 @@ npm-debug.log*
 .DS_Store
 # astro
 .astro/
+
+# Rohbild-Uploads (Originale; optimierte Versionen liegen in public/images)
+uploads/
