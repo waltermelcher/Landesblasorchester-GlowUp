@@ -19,7 +19,7 @@ export function isActive(current: string, path: string): boolean {
 export const site = {
   name: 'Landesblasorchester Baden-Württemberg',
   short: 'LBO',
-  tagline: 'Aus Liebe zur Musik',
+  tagline: 'Driven by music. Connected by heart.',
   claim: 'Sinfonische Blasmusik der Spitzenklasse',
   email: 'walter.melcher@landesblasorchester.de',
 };
