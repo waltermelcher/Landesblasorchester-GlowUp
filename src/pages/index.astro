@@ -46,8 +46,9 @@ const news = [
       <h1 class="display" data-reveal style="--delay:.05s">
         Aus Liebe <span class="hl">zur Musik</span>
       </h1>
-      <p class="hero-claim" data-reveal style="--delay:.12s">Sinfonische Blasmusik der Spitzenklasse — seit 1978.</p>
-      <div class="hero-actions" data-reveal style="--delay:.18s">
+      <p class="hero-tagline" data-reveal style="--delay:.1s">Driven by music.<br />Connected by heart.</p>
+      <p class="hero-claim" data-reveal style="--delay:.16s">Sinfonische Blasmusik der Spitzenklasse — seit 1978.</p>
+      <div class="hero-actions" data-reveal style="--delay:.22s">
         <a class="btn btn-primary" href={url('/konzerttermine')}>Konzerttermine<span class="arrow">→</span></a>
         <a class="btn btn-ghost" href={url('/wildflowers')}>Album „Wildflowers“ ♪</a>
       </div>
@@ -262,7 +263,16 @@ const news = [
   }
   .hero-stage-inner .display { color: #fff; margin: 1.1rem 0 0; max-width: 15ch; }
   .hero-stage-inner .hl { color: #eab6c1; }
-  .hero-stage-inner .hero-claim { color: rgba(255, 255, 255, 0.9); }
+  .hero-stage-inner .hero-tagline {
+    font-family: 'Permanent Marker', var(--font-display), cursive;
+    color: #fff;
+    font-size: clamp(1.4rem, 3.4vw, 2.4rem);
+    line-height: 1.12;
+    letter-spacing: 0.01em;
+    margin-top: 1.1rem;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+  }
+  .hero-stage-inner .hero-claim { color: rgba(255, 255, 255, 0.9); margin-top: 1.1rem; }
   .hero-stage-inner .eyebrow { color: #eab6c1; }
   .hero-stage-inner .eyebrow::before { background: #eab6c1; }
   .hero-stage-inner .btn-ghost { border-color: rgba(255, 255, 255, 0.55); color: #fff; }
