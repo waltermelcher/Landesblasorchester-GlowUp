@@ -1,0 +1,72 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+const privat = [
+  { name: 'Standard', price: '50', unit: '€ / Jahr', sub: '20 € für Studierende', feats: ['Informationen per E-Mail'] },
+  { name: 'Silber', price: '150', unit: '€ / Jahr', feats: ['Infos per E-Mail', 'Zwei Freikarten', 'Optionale Nennung auf der Website'] },
+  { name: 'Gold', price: '500', unit: '€ / Jahr', featured: true, feats: ['Infos per E-Mail', 'Vier Freikarten', 'Nennung auf Website & im Programm', 'Überraschungsbox'] },
+  { name: 'Platin', price: '1500', unit: '€ / Jahr', feats: ['Freier Eintritt für zwei zu allen Konzerten', 'Nennungen', 'Überraschungsbox', 'Exklusiver Jahresempfang'] },
+];
+
+const firmen = [
+  { name: 'Standard', price: '100' },
+  { name: 'Silber', price: '500' },
+  { name: 'Gold', price: '1.500' },
+  { name: 'Platin', price: '5.000' },
+];
+
+const board = [
+  { n: 'Roland Ströhm', r: 'Vorsitzender' },
+  { n: 'Stefanie Wunder', r: 'Geschäftsführerin' },
+  { n: 'Helmut Schwarz', r: 'Schatzmeister' },
+  { n: 'Ingrid Gökeler', r: 'Schriftführerin' },
+  { n: 'Erich Hermann', r: 'Beisitzer' },
+];
+---
+<PageLayout
+  title="Förderverein"
+  section="Förderverein"
+  eyebrow="Freunde des Landesblasorchester"
+  lead="Das LBO ist das musikalische Flaggschiff des Blasmusikverbandes Baden-Württemberg e.V. Der gemeinnützige Verein „Freunde des Landesblasorchester Baden-Württemberg“ unterstützt seit dem 25. Oktober 2018 die kulturelle Arbeit des Orchesters."
+>
+  <section class="section">
+    <div class="wrap">
+      <div class="prose" data-reveal style="max-width:820px">
+        <p>Das LBO arbeitet mit international renommierten Dirigent:innen, Komponist:innen und Solist:innen zusammen und versteht sich als kultureller Botschafter der sinfonischen Blasmusik. Es vergibt Kompositionsaufträge, bringt neue Werke zur Uraufführung und produziert Aufnahmen. Mitglieder wirken als Multiplikator:innen in ihre Heimatvereine zurück.</p>
+      </div>
+
+      <h2 data-reveal style="margin-top:3rem">Mitgliedschaft — Privatpersonen</h2>
+      <div class="grid grid-4" style="margin-top:1.5rem">
+        {privat.map((t, i) => (
+          <div class:list={['surface', 'tier', { featured: t.featured }]} data-reveal style={`--delay:${(i % 4) * 0.06}s`}>
+            {t.featured && <span class="tag" style="margin-bottom:0.7rem;display:inline-block">Beliebt</span>}
+            <h3 style="color:#fff">{t.name}</h3>
+            <div class="price" style="margin-top:0.5rem">{t.price}<span> {t.unit}</span></div>
+            {t.sub && <p class="muted" style="font-size:0.82rem;margin-top:0.2rem">{t.sub}</p>}
+            <ul>{t.feats.map((f) => <li>{f}</li>)}</ul>
+          </div>
+        ))}
+      </div>
+
+      <h2 data-reveal style="margin-top:3rem">Mitgliedschaft — Firmen &amp; Institutionen</h2>
+      <p class="muted" data-reveal style="margin-top:0.5rem">Leistungen analog zu den Privatstufen — mit der Option auf Logo-Nennung.</p>
+      <div class="grid grid-4" style="margin-top:1.5rem">
+        {firmen.map((t, i) => (
+          <div class="surface tier" data-reveal style={`--delay:${(i % 4) * 0.06}s`}>
+            <h3 style="color:#fff">{t.name}</h3>
+            <div class="price" style="margin-top:0.5rem">{t.price}<span> € / Jahr</span></div>
+          </div>
+        ))}
+      </div>
+
+      <div class="hero-actions" data-reveal style="margin-top:2rem">
+        <a class="btn btn-primary" href="mailto:walter.melcher@landesblasorchester.de?subject=Foerdermitgliedschaft">Förderer werden<span class="arrow">→</span></a>
+      </div>
+
+      <h2 data-reveal style="margin-top:3.5rem">Vorstand des Fördervereins</h2>
+      <div class="pill-row" style="margin-top:1.2rem" data-reveal>
+        {board.map((b) => <span class="tag">{b.n} · {b.r}</span>)}
+      </div>
+    </div>
+  </section>
+</PageLayout>

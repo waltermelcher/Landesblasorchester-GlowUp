@@ -1,0 +1,55 @@
+---
+import { url, site, socials } from '../lib/site';
+const year = 2026;
+---
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <img src={url('/images/logo.svg')} alt={site.name} />
+        <p style="max-width:32ch">Das Auswahlorchester des Blasmusikverbandes Baden-Württemberg e.V. — sinfonische Blasmusik der Spitzenklasse.</p>
+        <div class="pill-row" style="margin-top:1.2rem">
+          {socials.map((s) => (
+            <a class="tag" href={s.href} target="_blank" rel="noopener">{s.label} ↗</a>
+          ))}
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Konzerte</h4>
+        <a href={url('/konzerttermine')}>Konzerttermine</a>
+        <a href={url('/programm')}>Programm</a>
+        <a href={url('/wildflowers')}>Wildflowers</a>
+        <a href={url('/cds')}>CDs &amp; DVDs</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Orchester</h4>
+        <a href={url('/ueber-uns')}>Über uns</a>
+        <a href={url('/kuenstlerische-leitung')}>Künstlerische Leitung</a>
+        <a href={url('/vorstand')}>Vorstand</a>
+        <a href={url('/mitglied-werden')}>Mitglied werden</a>
+        <a href={url('/foerderverein')}>Förderverein</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Mitmachen</h4>
+        <a href={url('/lbo-hautnah')}>LBO-hautnah</a>
+        <a href={url('/lehrkonzert')}>Lehrkonzert</a>
+        <a href={url('/newsletter')}>Newsletter</a>
+        <a href={url('/presse')}>Presse</a>
+        <a href={url('/kontakt')}>Kontakt</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© {year} {site.name}</span>
+      <nav class="footer-legal" aria-label="Rechtliches">
+        <a href={url('/impressum')}>Impressum</a>
+        <a href={url('/datenschutzerklaerung')}>Datenschutzerklärung</a>
+        <a href={url('/haftung')}>Haftung</a>
+        <a href="https://intern.landesblasorchester.de/" target="_blank" rel="noopener">Interner Bereich ↗</a>
+      </nav>
+    </div>
+  </div>
+</footer>

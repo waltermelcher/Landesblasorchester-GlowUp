@@ -1,0 +1,54 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { url } from '../lib/site';
+
+const works = [
+  { t: 'Earthen Echoes Unveiled', c: 'Mathias Wehr', land: 'Deutschland · 2024', d: 'Eine energiegeladene Ouvertüre über globalen Wandel und Klimafolgen. Auftragswerk des LBO und Björn Bus für die WASBE 2024.' },
+  { t: 'Danse Satanique', c: 'Alexandre Kosmicki', land: 'Frankreich · 2015', d: 'Vom Marinemusik-Dirigenten aus Brest — Pflichtstück der europäischen Blasmusik-Meisterschaft.' },
+  { t: 'Images', c: 'José Suñer-Oriola', land: 'Spanien · 2017', d: 'Fünf musikalische Szenen zu Wahrzeichen in Illescas — mit Bezügen zu El Greco.' },
+  { t: 'Capriccio', c: 'Christiaan Janssen', land: 'Niederlande · 2015', d: 'Inspiriert von Panninis Gemälde „Capriccio of Rome“ (1758), verwurzelt in der deutschen Spätromantik.' },
+  { t: 'A Brussels Requiem', c: 'Bert Appermont', land: 'Belgien · 2016', d: 'Gedenken an die Anschläge von Brüssel 2016 — vier verbundene Sätze über Unschuld, Verlust und Hoffnung.' },
+  { t: 'Königsmarsch', c: 'Richard Strauss (arr. Guido Rennert)', land: 'Deutschland', d: 'Festlicher Abschluss in glanzvoller Bearbeitung.' },
+];
+const streams = [
+  { l: 'Spotify', href: '#' },
+  { l: 'Apple Music', href: '#' },
+  { l: 'YouTube', href: 'https://www.youtube.com/user/landesblasorchester' },
+];
+---
+<PageLayout
+  title="Wildflowers"
+  section="Medien"
+  eyebrow="Album · 2024"
+  lead="Junge Werke aus Europa — zusammengestellt für die WASBE-Konferenz 2024 im südkoreanischen Gwangju."
+>
+  <section class="section">
+    <div class="wrap">
+      <div class="surface card-pad" data-reveal style="display:grid;grid-template-columns:300px 1fr;gap:clamp(1.5rem,4vw,3rem);align-items:center;margin-bottom:2.5rem">
+        <img src={url('/images/wildflowers-cover.png')} alt="Wildflowers Cover" style="border-radius:14px;box-shadow:var(--shadow)" />
+        <div>
+          <h2>Wildflowers — Junge Werke aus Europa</h2>
+          <p style="margin-top:0.8rem">Jede Komposition entstand nach 2014 und stammt aus einem anderen europäischen Land. Das Orchester führte das Programm im Juli 2024 in Südkorea auf und leistete so einen Beitrag zum internationalen Kulturaustausch. Live aufgenommen in der Stadthalle Göppingen am 7. Juli 2024 (Tontechnik: Steffen Burkhardt).</p>
+          <div class="pill-row" style="margin-top:1.2rem">
+            {streams.map((s) => <a class="btn btn-ghost" href={s.href} target="_blank" rel="noopener">{s.l} ↗</a>)}
+            <a class="btn btn-primary" href="mailto:cd.verkauf@landesblasorchester.de?subject=Bestellung%20Wildflowers">LP bestellen · 35 €<span class="arrow">→</span></a>
+          </div>
+        </div>
+      </div>
+
+      <h2 data-reveal>Die Werke</h2>
+      <div class="stack" style="margin-top:1.5rem">
+        {works.map((w, i) => (
+          <div class="surface card-pad" data-reveal style={`--delay:${i * 0.05}s;display:grid;grid-template-columns:auto 1fr;gap:1.4rem`}>
+            <div class="avatar" aria-hidden="true">{String(i + 1)}</div>
+            <div>
+              <h3 style="color:#fff">{w.t}</h3>
+              <p style="color:var(--wine-soft);font-weight:600;margin-top:0.2rem">{w.c} <span class="muted" style="font-weight:400">· {w.land}</span></p>
+              <p style="margin-top:0.5rem">{w.d}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</PageLayout>

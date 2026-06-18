@@ -1,0 +1,51 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { url } from '../lib/site';
+
+const concerts = [
+  { day: '29', mon: 'März', yr: '2026', title: 'Werkstattkonzert', place: 'Plochingen', venue: 'Musikzentrum Baden-Württemberg', meta: '13:30 Uhr · Eintritt frei', cta: null },
+  { day: '18', mon: 'Apr', yr: '2026', title: 'Sinfonisches Konzert — Uraufführung „Drei-Klänge der Heimat“', place: 'Donaueschingen', venue: 'Mozart-Saal der Donauhallen', meta: 'Konzerteinführung 18:00 Uhr · Konzert 19:30 Uhr', cta: { label: 'Tickets · donaueschingen.de', href: 'https://www.donaueschingen.de/' } },
+  { day: '19', mon: 'Apr', yr: '2026', title: 'Sinfonisches Konzert', place: 'Schelklingen', venue: 'Stadthalle', meta: 'Lehrkonzert 16:00 Uhr · Konzert 18:00 Uhr', cta: { label: 'Tickets · Reservix', href: 'https://www.reservix.de/' } },
+  { day: '09', mon: 'Mai', yr: '2026', title: 'Lesung Kompositionswettbewerb', place: 'Plochingen', venue: 'Musikzentrum Baden-Württemberg', meta: '17:00 Uhr · Eintritt frei', cta: null },
+  { day: '20', mon: 'Jun', yr: '2026', title: 'Bezirksmusikfest', place: 'Sinsheim', venue: 'Stadthalle', meta: '17:45 Uhr', cta: null },
+  { day: '21', mon: 'Jun', yr: '2026', title: 'Sinfonisches Konzert', place: 'Plochingen', venue: 'Stadthalle', meta: '17:00 Uhr · Eintritt auf Spendenbasis', cta: null },
+];
+---
+<PageLayout
+  title="Konzerttermine"
+  section="Konzerte"
+  eyebrow="Saison 2026"
+  lead="Erleben Sie das Landesblasorchester Baden-Württemberg live — von Werkstattkonzerten bis zu Uraufführungen auf den großen Bühnen des Landes."
+>
+  <section class="section">
+    <div class="wrap stack">
+      {concerts.map((c, i) => (
+        <div class="concert-row" data-reveal style={`--delay:${i * 0.05}s`}>
+          <div class="concert-date">
+            <div class="day">{c.day}</div>
+            <div class="mon">{c.mon}</div>
+            <div class="yr">{c.yr}</div>
+          </div>
+          <div class="concert-main">
+            <h3>{c.title}</h3>
+            <div class="meta">{c.place} · {c.venue}</div>
+            <div class="meta" style="color:var(--wine-soft)">{c.meta}</div>
+          </div>
+          {c.cta
+            ? <a class="btn btn-primary concert-cta" href={c.cta.href} target="_blank" rel="noopener">{c.cta.label} →</a>
+            : <span class="tag concert-cta">Save the date</span>}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="cta-band" data-reveal>
+        <h2>Kein Konzert verpassen</h2>
+        <p class="lead center-x" style="max-width:520px">Mit unserem Newsletter erhalten Sie Termine, Tourneen und neue Aufnahmen direkt ins Postfach.</p>
+        <div class="hero-actions"><a class="btn btn-primary" href={url('/newsletter')}>Newsletter abonnieren<span class="arrow">→</span></a></div>
+      </div>
+    </div>
+  </section>
+</PageLayout>

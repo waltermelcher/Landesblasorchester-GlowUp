@@ -1,0 +1,43 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { url, socials } from '../lib/site';
+
+const contacts = [
+  { name: 'Ilka Hermann', role: 'Vorsitzende', desc: 'Für Konzertanfragen und allgemeine Fragen', email: 'ilka.hermann@landesblasorchester.de' },
+  { name: 'Walter Melcher', role: 'Kommunikationsreferent', desc: 'Für Kommunikation und Presse', email: 'walter.melcher@landesblasorchester.de' },
+];
+const initials = (n: string) => n.split(' ').map((w) => w[0]).join('').slice(0, 2);
+---
+<PageLayout
+  title="Kontakt"
+  section="Kontakt"
+  eyebrow="Sprechen Sie uns an"
+  lead="Sie haben Fragen rund um das Landesblasorchester? Dann nehmen Sie einfach Kontakt mit uns auf!"
+>
+  <section class="section">
+    <div class="wrap">
+      <div class="grid grid-2">
+        {contacts.map((c, i) => (
+          <div class="surface card-pad person" data-reveal style={`--delay:${i * 0.08}s`}>
+            <div class="avatar" aria-hidden="true">{initials(c.name)}</div>
+            <h3>{c.name}</h3>
+            <p class="role">{c.role}</p>
+            <p class="muted" style="margin-top:0.6rem">{c.desc}</p>
+            <a class="btn btn-primary" style="margin-top:1.2rem" href={`mailto:${c.email}`}>E-Mail schreiben<span class="arrow">→</span></a>
+          </div>
+        ))}
+      </div>
+
+      <div class="surface card-pad" data-reveal style="margin-top:2rem">
+        <h3 style="color:#fff">Weiterführende Links</h3>
+        <div class="pill-row" style="margin-top:1rem">
+          <a class="tag" href={url('/mitglied-werden')}>Mitglied werden</a>
+          <a class="tag" href={url('/cds')}>CDs bestellen</a>
+          <a class="tag" href={url('/newsletter')}>Newsletter</a>
+          <a class="tag" href={url('/foerderverein')}>Förderverein</a>
+          {socials.map((s) => <a class="tag" href={s.href} target="_blank" rel="noopener">{s.label} ↗</a>)}
+        </div>
+      </div>
+    </div>
+  </section>
+</PageLayout>

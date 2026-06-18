@@ -1,0 +1,35 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+const board = [
+  { name: 'Ilka Hermann', role: 'Vorsitzende' },
+  { name: 'Thomas Kuhn', role: 'Stellv. Vorsitzender' },
+  { name: 'Ingrid Gökeler', role: 'Finanzreferentin' },
+  { name: 'Walter Melcher', role: 'Kommunikationsreferent' },
+  { name: 'Elias Kowalski', role: 'Musikreferent' },
+  { name: 'Erich Hermann', role: 'Personalreferent' },
+  { name: 'Alexandra Zonca', role: 'Organisationsreferentin' },
+  { name: 'Maria Wunder', role: 'Konzertmeisterin' },
+];
+const initials = (n: string) => n.split(' ').map((w) => w[0]).join('').slice(0, 2);
+---
+<PageLayout
+  title="Vorstand"
+  section="Orchester"
+  eyebrow="Leitendes Organ"
+  lead="Die Vorstandschaft ist das leitende Organ des Landesblasorchesters und vertritt dieses zudem nach außen."
+>
+  <section class="section">
+    <div class="wrap">
+      <div class="grid grid-4">
+        {board.map((m, i) => (
+          <div class="card card-pad person" data-reveal style={`--delay:${(i % 4) * 0.06}s`}>
+            <div class="avatar" aria-hidden="true">{initials(m.name)}</div>
+            <h3>{m.name}</h3>
+            <p class="role">{m.role}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</PageLayout>

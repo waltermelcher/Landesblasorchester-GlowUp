@@ -1,0 +1,25 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { url } from '../../lib/site';
+---
+<PageLayout
+  title="Interview mit Frederik Abel"
+  section="Aktuelles"
+  eyebrow="Interview"
+  lead="Der junge Komponist über seine Siegerkomposition „Drei-Klänge der Heimat“ und die Arbeit mit dem Landesblasorchester."
+>
+  <section class="section">
+    <div class="wrap">
+      <img src={url('/images/news-interview-abel.png')} alt="Frederik Abel" style="width:100%;border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:2rem" data-reveal />
+      <div class="prose" data-reveal>
+        <p>Mit „Drei-Klänge der Heimat“ hat Frederik Abel (*2003) den Kompositionswettbewerb „Donaueschingen 2.0“ gewonnen. Im Gespräch erzählt er, wie aus drei deutschen Volksliedern ein modernes sinfonisches Werk wurde.</p>
+        <h3>Wie ist die Idee zu „Drei-Klänge der Heimat“ entstanden?</h3>
+        <p>Ich wollte vertraute Melodien in ein neues Licht rücken — Klänge, die viele Menschen seit ihrer Kindheit kennen, kunstvoll neu verwoben und für ein Spitzenorchester instrumentiert.</p>
+        <h3>Wie war die Zusammenarbeit mit dem LBO?</h3>
+        <p>Außergewöhnlich. Ein Orchester dieser Qualität schöpft jede Nuance einer Partitur aus. Schon in den ersten Proben hat das Werk eine Tiefe bekommen, die ich mir beim Schreiben kaum vorstellen konnte.</p>
+        <p>Die Uraufführung findet am 18. April 2026 in Donaueschingen statt.</p>
+        <p><a href={url('/aktuelles/siegerkomposition-drei-klaenge')}>→ Mehr zur Uraufführung</a></p>
+      </div>
+    </div>
+  </section>
+</PageLayout>

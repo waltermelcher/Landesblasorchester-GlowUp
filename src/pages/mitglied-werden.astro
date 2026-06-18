@@ -1,0 +1,46 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { url } from '../lib/site';
+
+const rehearsals = [
+  '06.03.2026 – 08.03.2026 · Musikakademie Plochingen',
+  '27.03.2026 – 29.03.2026 · Musikakademie Plochingen',
+  '18.09.2026 – 20.09.2026 · Musikakademie Plochingen',
+  '09.10.2026 – 11.10.2026 · Musikakademie Plochingen',
+];
+---
+<PageLayout
+  title="Mitglied werden"
+  section="Orchester"
+  eyebrow="Mitspielen"
+  lead="Du möchtest Mitglied im Orchester werden? Wir suchen laufend neue Musiker:innen in allen Registern."
+>
+  <section class="section">
+    <div class="wrap">
+      <div class="hero-grid" style="align-items:start">
+        <div class="prose" data-reveal>
+          <p>Interessierte Spieler:innen schreiben uns einfach eine E-Mail. Probespiele finden freitagnachmittags in der ersten Arbeitsphase jedes Halbjahres statt — im März und September.</p>
+          <p>Das Ensemble trifft sich regelmäßig zu Proben, Konzerten, CD-Produktionen und Konzertreisen. Alle Termine werden frühzeitig angekündigt, damit Mitglieder planen können. Die Teilnahme an allen angesetzten Proben ist essenziell.</p>
+          <h3>Probespiel</h3>
+          <p>Das Probespiel wird von Stimmführer:innen, dem Dirigenten, der Konzertmeisterin und Vorstandsmitgliedern abgenommen. Es umfasst ein selbst gewähltes Stück, Auszüge aus früheren Konzertprogrammen und Blattspiel.</p>
+          <p><strong>„Der Schwierigkeitsgrad ist nicht das Entscheidende, sondern die Qualität der Ausführung!“</strong></p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="mailto:walter.melcher@landesblasorchester.de?subject=Probespiel%20LBO">Jetzt bewerben<span class="arrow">→</span></a>
+            <a class="btn btn-ghost" href={url('/lbo-hautnah')}>Erst reinschnuppern: LBO-hautnah</a>
+          </div>
+        </div>
+
+        <div class="surface card-pad" data-reveal style="--delay:.08s">
+          <h3 style="color:#fff">Unsere Probetermine</h3>
+          <div class="stack" style="margin-top:1rem">
+            {rehearsals.map((r) => (
+              <div style="display:flex;gap:0.7rem;padding:0.7rem 0;border-bottom:1px solid var(--line);color:var(--fg-dim)">
+                <span style="color:var(--wine-soft)">♪</span>{r}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</PageLayout>

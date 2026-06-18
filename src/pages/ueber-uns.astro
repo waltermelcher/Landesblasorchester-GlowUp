@@ -1,0 +1,62 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { url } from '../lib/site';
+
+const awards = [
+  { year: '2005', text: '1. Preis World Music Contest Kerkrade' },
+  { year: '2011', text: '2. Platz Berliner Philharmonie — 99,5 von 100 Punkten' },
+  { year: '2015', text: 'WASBE World Conference, San José' },
+  { year: '2016', text: '4. Platz Europameisterschaft Utrecht' },
+  { year: '2017', text: '2. Platz WMC — 96 Punkte, deutscher Bestwert' },
+];
+
+const timeline = [
+  { h: 'Ursprünge', t: 'In den 1970er-Jahren gegründet von Hellmut Haase-Altendorf und Prof. Richard Zettler, um herausragende Musiker:innen aus Baden-Württemberg zu vereinen und die sinfonische Blasorchesterliteratur zu fördern.' },
+  { h: 'Gründung 1978', t: 'Etabliert 1978 mit Unterstützung von Prof. Erich Ganzenmüller. Erste Proben ab 7. Oktober 1978 in Aldingen, erster öffentlicher Auftritt am 11. November 1978, erstes Konzert 1980 in Böblingen.' },
+  { h: 'Leistung & Ansehen', t: 'Ab 1984 mit Satzung; Harry D. Bath (1986–1996) hob das Niveau deutlich an. Es folgten Heinz Friesen, Walter Ratzek und Gastdirigenten. Isabelle Ruf-Weber leitete 2004–2013, seit 2014 ist Björn Bus künstlerischer Leiter.' },
+  { h: 'Gegenwart & Zukunft', t: 'Als Multiplikator wirkt das LBO ins ganze Land: ehemalige und aktive Mitglieder sind Dirigent:innen und Ausbilder:innen. Werke, die hier vor 10–15 Jahren gespielt wurden, stehen heute regelmäßig auf regionalen Konzertprogrammen.' },
+];
+---
+<PageLayout
+  title="Über uns"
+  section="Orchester"
+  eyebrow="Seit 1978"
+  lead="Das Landesblasorchester Baden-Württemberg ist das Auswahlorchester des Blasmusikverbandes Baden-Württemberg e.V. (BVBW) — und eines der erfolgreichsten Blasorchester Deutschlands."
+>
+  <section class="section">
+    <div class="wrap">
+      <div class="hero-grid" style="align-items:center">
+        <div class="prose" data-reveal>
+          <p>Rund 85 hochqualifizierte Musiker:innen treffen sich jährlich zu vier intensiven Probenwochenenden und erarbeiten Programme aus Originalkompositionen, klassischen Bearbeitungen, Uraufführungen und Kammermusik. Das Ensemble wurde vielfach international ausgezeichnet und hat zahlreiche Aufnahmen veröffentlicht.</p>
+          <p>Die künstlerische Leitung liegt seit 2014 bei <a href={url('/kuenstlerische-leitung')}>Björn Bus</a>.</p>
+        </div>
+        <div class="frame hero-visual" data-reveal style="--delay:.08s">
+          <div class="frame"><img src={url('/images/orchestra-2.png')} alt="Das Landesblasorchester" /></div>
+        </div>
+      </div>
+
+      <h2 data-reveal style="margin-top:3.5rem">Auszeichnungen</h2>
+      <div class="grid grid-3" style="margin-top:1.5rem">
+        {awards.map((a, i) => (
+          <div class="card card-pad" data-reveal style={`--delay:${(i % 3) * 0.06}s`}>
+            <div style="font-family:var(--font-display);font-weight:800;color:var(--wine-soft);font-size:1.6rem">{a.year}</div>
+            <p style="margin-top:0.4rem">{a.text}</p>
+          </div>
+        ))}
+      </div>
+
+      <h2 data-reveal style="margin-top:3.5rem">Geschichte &amp; Zielsetzung</h2>
+      <div class="stack" style="margin-top:1.5rem">
+        {timeline.map((tl, i) => (
+          <div class="surface card-pad" data-reveal style={`--delay:${i * 0.05}s;display:grid;grid-template-columns:auto 1fr;gap:1.4rem`}>
+            <div style="width:4px;border-radius:4px;background:linear-gradient(180deg,var(--wine),var(--wine-deep))"></div>
+            <div>
+              <h3 style="color:#fff">{tl.h}</h3>
+              <p style="margin-top:0.5rem">{tl.t}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</PageLayout>

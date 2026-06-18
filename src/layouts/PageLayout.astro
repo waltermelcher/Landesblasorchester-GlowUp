@@ -1,0 +1,28 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { url } from '../lib/site';
+
+interface Props {
+  title: string;
+  eyebrow?: string;
+  lead?: string;
+  description?: string;
+  section?: string; // breadcrumb-Sektion, z.B. "Orchester"
+}
+const { title, eyebrow, lead, description, section } = Astro.props;
+---
+<BaseLayout title={title} description={description}>
+  <section class="page-hero">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href={url('/')}>Start</a>
+        {section && <> · <span>{section}</span></>}
+        <> · <span style="color:var(--fg-dim)">{title}</span></>
+      </nav>
+      {eyebrow && <p class="eyebrow" style="margin-top:1.2rem">{eyebrow}</p>}
+      <h1 class="display" data-reveal>{title}</h1>
+      {lead && <p class="lead" data-reveal style="--delay:.08s">{lead}</p>}
+    </div>
+  </section>
+  <slot />
+</BaseLayout>

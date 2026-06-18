@@ -1,0 +1,68 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { url } from '../lib/site';
+
+const releases = [
+  { title: 'Wildflowers (LP)', cond: 'Björn Bus', year: '2024', price: '35 €', desc: 'Sechs junge Werke aus Europa — u. a. Mathias Wehr, Alexandre Kosmicki, Richard Strauss.', cover: 'wildflowers-cover.png', featured: true },
+  { title: 'Klangbilder', cond: 'Björn Bus', year: '2018', price: '15 €', desc: 'Neun Kompositionen, u. a. José Suñer Oriola und klassische Bearbeitungen.' },
+  { title: 'DVD · WMC Kerkrade', cond: 'Björn Bus', year: '2017', price: '15 €', desc: 'Vize-Weltmeister-Konzert live, mit Flötistin Corinna Henger.' },
+  { title: 'Lord of the Rings', cond: 'Björn Bus', year: '2019', price: '10 €', desc: 'Johan de Meijs 5. Sinfonie mit dem Neuen Kammerchor Heidenheim.' },
+  { title: 'Transitions', cond: 'Björn Bus', year: '2013', price: '15 €', desc: 'Sechs Werke von Wagner über Badings bis Bernstein.' },
+  { title: 'Gelb', cond: 'Isabelle Ruf-Weber', year: '—', price: '15 €', desc: 'Fünf Werke, u. a. Saxophonkonzert mit Tanja Heinkel.' },
+  { title: 'Gilgamesh', cond: 'Isabelle Ruf-Weber', year: '2006', price: '15 €', desc: 'Episches Werk mit Sprecher Stefan Müller-Ruppert; Sinfonie von Bert Appermont.' },
+  { title: 'Ross Roy', cond: 'van der Roost / de Haan', year: '1998', price: '10 €', desc: 'Zehn Werke; mit Lars Firchau am Horn.' },
+  { title: 'WASBE 2007', cond: 'Isabelle Ruf-Weber', year: '2007', price: '10 €', desc: 'Live-Konzertmitschnitt mit Tanja Heinkel am Saxophon.' },
+  { title: 'Die Druiden', cond: 'Harry D. Bath', year: '1996', price: '10 €', desc: 'Fünf Werke, mit Euphonium-Soli von Steven Mead.' },
+  { title: 'Cartoon', cond: 'Harry D. Bath', year: '1996', price: '10 €', desc: 'Elf unterhaltsame Kurzwerke — ein Querschnitt durch das Repertoire.' },
+  { title: '20 Jahre LBO', cond: 'Walter Ratzek', year: '1999', price: '10 €', desc: 'Fünf Werke von Badings über Scriabin bis Bernstein.' },
+  { title: 'Collections', cond: 'de Meij / Ratzek', year: '2002', price: '10 €', desc: 'Vier Werke, u. a. Horn-Solo von Lars Firchau.' },
+  { title: 'Donaueschingen 1926', cond: 'Harry D. Bath', year: '—', price: '15 €', desc: 'Historische Aufnahmen: Hindemith, Toch, Krenek, Pepping.' },
+  { title: 'Time to say goodbye', cond: 'Harry D. Bath', year: '1996', price: '10 €', desc: 'Neun Werke mit Flöte und Xylophon als Soloinstrumenten.' },
+  { title: 'Salute to the Wolves', cond: 'Harry D. Bath', year: '1993', price: '10 €', desc: 'Sechs Werke mit Percussion-Solist Claus Weisserth.' },
+  { title: 'WMC 2009', cond: 'Isabelle Ruf-Weber', year: '2009', price: '15 €', desc: 'Drei zeitgenössische Werke im Wettbewerbskontext (Kerkrade).' },
+  { title: 'Landesblasorchester BW', cond: 'Harry D. Bath', year: '1991', price: '10 €', desc: 'Sechs Werke mit Klarinette und Bassetthorn als Solisten.' },
+];
+const featured = releases.find((r) => r.featured)!;
+const rest = releases.filter((r) => !r.featured);
+---
+<PageLayout
+  title="CDs & DVDs"
+  section="Medien"
+  eyebrow="Diskografie"
+  lead="Über vier Jahrzehnte aufgenommene sinfonische Blasmusik. Bestellung per E-Mail — Versand 2 € (DE), ab 3 CDs versandkostenfrei. Preise inkl. 19 % MwSt."
+>
+  <section class="section">
+    <div class="wrap">
+      <!-- Featured -->
+      <div class="surface card-pad" data-reveal style="display:grid;grid-template-columns:280px 1fr;gap:clamp(1.5rem,4vw,3rem);align-items:center;margin-bottom:2.5rem">
+        <img src={url('/images/' + featured.cover)} alt={featured.title} style="border-radius:14px;box-shadow:var(--shadow)" />
+        <div>
+          <span class="tag">Neuerscheinung</span>
+          <h2 style="margin:0.8rem 0 0.4rem">{featured.title}</h2>
+          <p style="color:var(--wine-soft);font-weight:600">{featured.cond} · {featured.year} · {featured.price}</p>
+          <p style="margin-top:0.7rem">{featured.desc}</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href={url('/wildflowers')}>Mehr zum Album<span class="arrow">→</span></a>
+            <a class="btn btn-ghost" href="mailto:cd.verkauf@landesblasorchester.de?subject=Bestellung%20Wildflowers">Bestellen</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-3">
+        {rest.map((r, i) => (
+          <div class="card card-pad" data-reveal style={`--delay:${(i % 3) * 0.06}s`}>
+            <h3 style="color:#fff;font-size:1.15rem">{r.title}</h3>
+            <p style="color:var(--wine-soft);font-size:0.88rem;margin-top:0.3rem">{r.cond} · {r.year}</p>
+            <p style="font-size:0.92rem;margin-top:0.6rem">{r.desc}</p>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:1rem;padding-top:0.9rem;border-top:1px solid var(--line)">
+              <span style="font-family:var(--font-display);font-weight:800;color:#fff;font-size:1.3rem">{r.price}</span>
+              <a class="link-wine" style="font-weight:600" href={`mailto:cd.verkauf@landesblasorchester.de?subject=Bestellung%20${encodeURIComponent(r.title)}`}>Bestellen →</a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <p class="muted center" style="margin-top:2rem">Bestellungen an <a class="link-wine" href="mailto:cd.verkauf@landesblasorchester.de">cd.verkauf@landesblasorchester.de</a></p>
+    </div>
+  </section>
+</PageLayout>

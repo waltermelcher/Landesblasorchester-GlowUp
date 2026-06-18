@@ -1,0 +1,172 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { url } from '../lib/site';
+
+const concerts = [
+  { day: '29', mon: 'März', yr: '2026', title: 'Werkstattkonzert', place: 'Plochingen · Musikzentrum BW', meta: '13:30 Uhr · Eintritt frei' },
+  { day: '18', mon: 'Apr', yr: '2026', title: 'Uraufführung „Drei-Klänge der Heimat“', place: 'Donaueschingen · Mozart-Saal', meta: 'Einführung 18:00 · Konzert 19:30' },
+  { day: '19', mon: 'Apr', yr: '2026', title: 'Sinfonisches Konzert', place: 'Schelklingen · Stadthalle', meta: 'Lehrkonzert 16:00 · Konzert 18:00' },
+  { day: '20', mon: 'Jun', yr: '2026', title: 'Bezirksmusikfest', place: 'Sinsheim · Stadthalle', meta: '17:45 Uhr' },
+];
+
+const news = [
+  { img: 'news-interview-abel.png', tag: 'Interview', title: 'Interview mit Frederik Abel', text: 'Der junge Komponist über seine Siegerkomposition und die Arbeit mit dem LBO.', href: '/aktuelles/interview-mit-frederik-abel' },
+  { img: 'news-drei-klaenge.png', tag: 'Uraufführung', title: '„Drei-Klänge der Heimat“ in Donaueschingen', text: 'Die Siegerkomposition wird am 18.04.2026 in Donaueschingen uraufgeführt.', href: '/aktuelles/siegerkomposition-drei-klaenge' },
+  { img: 'news-donaueschingen.png', tag: 'Wettbewerb', title: 'Frederik Abel gewinnt Kompositionswettbewerb', text: '„Donaueschingen 2.0“: Frederik Abel überzeugt die Jury und das Publikum.', href: '/aktuelles/donaueschingen-2-0' },
+];
+---
+<BaseLayout>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow" data-reveal>Auswahlorchester des BVBW e.V.</p>
+        <h1 class="display" data-reveal style="--delay:.05s">
+          Aus Liebe <span class="text-gradient">zur Musik</span>
+        </h1>
+        <p class="hero-claim" data-reveal style="--delay:.12s">Sinfonische Blasmusik der Spitzenklasse — seit 1978.</p>
+        <div class="hero-actions" data-reveal style="--delay:.18s">
+          <a class="btn btn-primary" href={url('/konzerttermine')}>Konzerttermine<span class="arrow">→</span></a>
+          <a class="btn btn-ghost" href={url('/wildflowers')}>Album „Wildflowers“ ♪</a>
+        </div>
+
+        <div class="stat-strip" data-reveal style="--delay:.24s">
+          <div class="stat"><span class="n">~85</span><span class="l">Musiker:innen</span></div>
+          <div class="stat"><span class="n">96 / 100</span><span class="l">WMC 2017 — dt. Bestwert</span></div>
+          <div class="stat"><span class="n">1.</span><span class="l">Platz WMC Kerkrade 2005</span></div>
+          <div class="stat"><span class="n">18+</span><span class="l">CDs &amp; DVDs</span></div>
+        </div>
+      </div>
+
+      <div class="hero-visual" data-reveal style="--delay:.1s">
+        <div class="frame">
+          <img src={url('/images/orchestra-2.png')} alt="Das Landesblasorchester Baden-Württemberg auf der Bühne" />
+        </div>
+        <div class="hero-badge">
+          <div class="big">Björn Bus</div>
+          <div class="small">Künstlerische Leitung seit 2014</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWS -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" data-reveal>Aktuelles</p>
+        <h2 data-reveal>Neuigkeiten aus dem Orchester</h2>
+      </div>
+      <div class="grid grid-3">
+        {news.map((n, i) => (
+          <a class="card" href={url(n.href)} data-reveal style={`--delay:${i * 0.08}s`}>
+            <div class="card-media"><img src={url('/images/' + n.img)} alt={n.title} /></div>
+            <div class="card-pad">
+              <span class="tag">{n.tag}</span>
+              <h3 style="margin:0.8rem 0 0.5rem;color:#fff;font-size:1.2rem">{n.title}</h3>
+              <p style="font-size:0.95rem">{n.text}</p>
+              <span class="link-wine" style="display:inline-block;margin-top:0.9rem;font-weight:600">Weiterlesen →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CONCERTS -->
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head" style="display:flex;justify-content:space-between;align-items:end;max-width:none;gap:1rem;flex-wrap:wrap">
+        <div>
+          <p class="eyebrow" data-reveal>Live erleben</p>
+          <h2 data-reveal>Nächste Konzerte</h2>
+        </div>
+        <a class="btn btn-ghost" href={url('/konzerttermine')} data-reveal>Alle Termine →</a>
+      </div>
+      <div class="stack">
+        {concerts.map((c, i) => (
+          <div class="concert-row" data-reveal style={`--delay:${i * 0.06}s`}>
+            <div class="concert-date">
+              <div class="day">{c.day}</div>
+              <div class="mon">{c.mon}</div>
+              <div class="yr">{c.yr}</div>
+            </div>
+            <div class="concert-main">
+              <h3>{c.title}</h3>
+              <div class="meta">{c.place} · {c.meta}</div>
+            </div>
+            <a class="btn btn-ghost concert-cta" href={url('/konzerttermine')}>Details</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT / CONDUCTOR -->
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="surface" style="overflow:hidden">
+        <div class="hero-grid" style="align-items:stretch;gap:0">
+          <div style="padding:clamp(2rem,5vw,3.5rem)">
+            <p class="eyebrow" data-reveal>Über das LBO</p>
+            <h2 data-reveal style="margin-top:0.7rem">Eines der erfolgreichsten Blasorchester Deutschlands</h2>
+            <p data-reveal style="margin-top:1.1rem">Gegründet 1978, vereint das Landesblasorchester Baden-Württemberg rund 85 hochqualifizierte Musiker:innen aus dem ganzen Land. In intensiven Probenphasen entstehen Programme von Originalkompositionen über Klassik-Bearbeitungen bis zu Uraufführungen — preisgekrönt auf den großen internationalen Bühnen.</p>
+            <div class="hero-actions" data-reveal>
+              <a class="btn btn-primary" href={url('/ueber-uns')}>Unsere Geschichte<span class="arrow">→</span></a>
+              <a class="btn btn-ghost" href={url('/kuenstlerische-leitung')}>Künstlerische Leitung</a>
+            </div>
+          </div>
+          <div style="min-height:340px;position:relative">
+            <img src={url('/images/bjoern-bus-orchestra.jpg')} alt="Björn Bus dirigiert das LBO" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WILDFLOWERS FEATURE -->
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="surface card-pad" style="display:grid;grid-template-columns:280px 1fr;gap:clamp(1.5rem,4vw,3rem);align-items:center">
+        <img src={url('/images/wildflowers-cover.png')} alt="Wildflowers Albumcover" style="border-radius:14px;box-shadow:var(--shadow)" data-reveal />
+        <div data-reveal style="--delay:.08s">
+          <span class="tag">Neue Aufnahme · 2024</span>
+          <h2 style="margin:0.9rem 0 0.6rem">Wildflowers — Junge Werke aus Europa</h2>
+          <p>Zusammengestellt für die WASBE-Konferenz 2024 im südkoreanischen Gwangju: sechs Werke, jedes nach 2014 entstanden, jedes aus einem anderen europäischen Land. Live aufgenommen in der Stadthalle Göppingen.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href={url('/wildflowers')}>Album entdecken<span class="arrow">→</span></a>
+            <a class="btn btn-ghost" href={url('/cds')}>Alle CDs &amp; DVDs</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNERS -->
+  <section class="section-tight">
+    <div class="wrap center">
+      <p class="eyebrow center-x" style="justify-content:center" data-reveal>Getragen von</p>
+      <div class="pill-row" style="justify-content:center;margin-top:1.2rem" data-reveal>
+        <span class="tag">Blasmusikverband Baden-Württemberg e.V.</span>
+        <span class="tag">Landesmusikverband Baden-Württemberg</span>
+        <span class="tag">Freunde des LBO</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="cta-band" data-reveal>
+        <p class="eyebrow center-x" style="justify-content:center">Mitspielen &amp; Unterstützen</p>
+        <h2>Werde Teil der Klangfamilie</h2>
+        <p class="lead center-x" style="max-width:560px">Ob als Musiker:in im Probespiel, als Förderer oder mit unserem Newsletter — bleib dem LBO nah.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href={url('/mitglied-werden')}>Mitglied werden<span class="arrow">→</span></a>
+          <a class="btn btn-ghost" href={url('/foerderverein')}>Förderverein</a>
+          <a class="btn btn-ghost" href={url('/newsletter')}>Newsletter abonnieren</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

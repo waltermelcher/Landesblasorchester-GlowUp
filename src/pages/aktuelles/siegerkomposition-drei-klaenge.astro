@@ -1,0 +1,22 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { url } from '../../lib/site';
+---
+<PageLayout
+  title="„Drei-Klänge der Heimat“ wird uraufgeführt"
+  section="Aktuelles"
+  eyebrow="Uraufführung"
+  lead="Die Siegerkomposition von Frederik Abel wird am 18.04.2026 in Donaueschingen uraufgeführt."
+>
+  <section class="section">
+    <div class="wrap">
+      <img src={url('/images/news-drei-klaenge.png')} alt="Drei-Klänge der Heimat" style="width:100%;border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:2rem" data-reveal />
+      <div class="prose" data-reveal>
+        <p>Im Rahmen des sinfonischen Konzerts im Mozart-Saal der Donauhallen bringt das Landesblasorchester Baden-Württemberg unter Leitung von Björn Bus die Siegerkomposition des Wettbewerbs „Donaueschingen 2.0“ zur Uraufführung.</p>
+        <p>„Drei-Klänge der Heimat“ verwebt drei deutsche Volkslieder zu einem frisch instrumentierten, modernen Werk. Eine Konzerteinführung beginnt um 18:00 Uhr, das Konzert um 19:30 Uhr.</p>
+        <p>Tickets sind über <a href="https://www.donaueschingen.de/" target="_blank" rel="noopener">donaueschingen.de</a> erhältlich.</p>
+        <p><a href={url('/programm')}>→ Zum vollständigen Programm</a> · <a href={url('/konzerttermine')}>→ Alle Termine</a></p>
+      </div>
+    </div>
+  </section>
+</PageLayout>

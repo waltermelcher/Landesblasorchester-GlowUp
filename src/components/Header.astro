@@ -1,0 +1,84 @@
+---
+import { nav, url, isActive, site } from '../lib/site';
+const current = Astro.url.pathname;
+---
+<header class="site-header" id="siteHeader">
+  <div class="wrap nav">
+    <a class="brand" href={url('/')} aria-label={site.name}>
+      <img src={url('/images/logo.svg')} alt={site.name} />
+    </a>
+
+    <nav aria-label="Hauptnavigation">
+      <ul class="nav-list">
+        {nav.map((item) => (
+          <li class="nav-item">
+            <a
+              class:list={['nav-link', { active: item.href && isActive(current, item.href) }]}
+              href={item.href ? url(item.href) : '#'}
+            >
+              {item.label}
+              {item.children && (
+                <svg class="chev" viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              )}
+            </a>
+            {item.children && (
+              <div class="dropdown">
+                {item.children.map((c) => (
+                  <a href={c.external ? c.href : url(c.href)} target={c.external ? '_blank' : undefined} rel={c.external ? 'noopener' : undefined}>
+                    <span>{c.label}</span>
+                    {c.external && <span class="ext">↗</span>}
+                  </a>
+                ))}
+              </div>
+            )}
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="nav-cta">
+      <a class="btn btn-primary" href={url('/konzerttermine')}>Konzerte<span class="arrow">→</span></a>
+      <button class="burger" id="burger" aria-label="Menü öffnen" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-panel" id="mobilePanel">
+    {nav.map((item) => (
+      <div class="m-group">
+        {item.href
+          ? <a class="m-head" href={url(item.href)}>{item.label}</a>
+          : <div class="m-head">{item.label}</div>}
+        {item.children && item.children.map((c) => (
+          <a href={c.external ? c.href : url(c.href)} target={c.external ? '_blank' : undefined} rel={c.external ? 'noopener' : undefined}>
+            {c.label}{c.external ? ' ↗' : ''}
+          </a>
+        ))}
+      </div>
+    ))}
+    <a class="btn btn-primary" style="margin-top:1.5rem" href={url('/mitglied-werden')}>Mitglied werden →</a>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById('siteHeader');
+  const onScroll = () => header?.classList.toggle('scrolled', window.scrollY > 12);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  const burger = document.getElementById('burger');
+  const panel = document.getElementById('mobilePanel');
+  burger?.addEventListener('click', () => {
+    const open = panel?.classList.toggle('open');
+    burger.setAttribute('aria-expanded', String(!!open));
+    document.body.classList.toggle('menu-open', !!open);
+  });
+  panel?.querySelectorAll('a').forEach((a) =>
+    a.addEventListener('click', () => {
+      panel.classList.remove('open');
+      document.body.classList.remove('menu-open');
+      burger?.setAttribute('aria-expanded', 'false');
+    })
+  );
+</script>

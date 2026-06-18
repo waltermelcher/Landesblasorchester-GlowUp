@@ -1,0 +1,45 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+const benefits = ['Aktuelle Neuigkeiten', 'Konzerttermine', 'Informationen zu Tourneen', 'Wettbewerbsteilnahmen', 'Neue CD-Veröffentlichungen'];
+---
+<PageLayout
+  title="Newsletter"
+  section="Medien"
+  eyebrow="Immer informiert"
+  lead="Melde dich zu unserem Newsletter an! Durch eine einfache Anmeldung erhältst du diesen ab sofort kostenfrei und völlig unverbindlich."
+>
+  <section class="section">
+    <div class="wrap">
+      <div class="hero-grid" style="align-items:center">
+        <div data-reveal>
+          <h2>Das erwartet dich</h2>
+          <ul style="list-style:none;padding:0;margin-top:1.2rem">
+            {benefits.map((b) => (
+              <li style="display:flex;gap:0.7rem;padding:0.6rem 0;border-bottom:1px solid var(--line);color:var(--fg-dim)"><span style="color:var(--wine-soft)">♪</span>{b}</li>
+            ))}
+          </ul>
+          <p class="muted" style="margin-top:1.2rem;font-size:0.88rem">Deine Daten werden vertraulich behandelt und ausschließlich für Informationen rund um das Orchester verwendet.</p>
+        </div>
+
+        <div class="surface card-pad" data-reveal style="--delay:.08s">
+          <h3 style="color:#fff">LBO Newsletter-Anmeldung</h3>
+          <form class="flow" style="margin-top:1.2rem" onsubmit="this.reset();document.getElementById('nl-ok').style.display='block';return false;">
+            <label class="flow" style="display:block">
+              <span style="font-size:0.85rem;color:var(--fg-mut)">E-Mail-Adresse</span>
+              <input type="email" required placeholder="name@beispiel.de" style="width:100%;padding:0.8rem 1rem;border-radius:12px;border:1px solid var(--line-strong);background:var(--ink-700);color:var(--fg)" />
+            </label>
+            <div class="grid grid-2">
+              <label style="display:block"><span style="font-size:0.85rem;color:var(--fg-mut)">Vorname</span>
+                <input type="text" placeholder="Vorname" style="width:100%;padding:0.8rem 1rem;border-radius:12px;border:1px solid var(--line-strong);background:var(--ink-700);color:var(--fg)" /></label>
+              <label style="display:block"><span style="font-size:0.85rem;color:var(--fg-mut)">Nachname</span>
+                <input type="text" placeholder="Nachname" style="width:100%;padding:0.8rem 1rem;border-radius:12px;border:1px solid var(--line-strong);background:var(--ink-700);color:var(--fg)" /></label>
+            </div>
+            <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center;margin-top:0.5rem">Anmelden<span class="arrow">→</span></button>
+            <p id="nl-ok" style="display:none;color:var(--wine-soft);font-size:0.9rem">Erfolgreich zum LBO Newsletter hinzugefügt.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</PageLayout>

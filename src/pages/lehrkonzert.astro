@@ -1,0 +1,49 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+const questions = [
+  'Welche Werke verbessern den Orchesterklang?',
+  'Wie grooven Polka, Marsch und Walzer richtig?',
+  'Wie lassen sich die Klangfarben des Blasorchesters wirkungsvoll herausarbeiten?',
+  'Wie wendet man Artikulation, Phrasierung und Dynamik authentisch an?',
+  'Welche Stücke passen in neue Konzertprogramme?',
+];
+---
+<PageLayout
+  title="Lehrkonzert"
+  section="Orchester"
+  eyebrow="Gemeinsam entdecken"
+  lead="Gemeinsam sinfonische und traditionelle Blasmusik-Klassiker entdecken — mit Mitgliedern des LBO und Björn Bus."
+>
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head" style="max-width:760px">
+        <h2 data-reveal>Fünf Fragen, die jedes Orchester voranbringen</h2>
+      </div>
+      <div class="grid grid-2" style="margin-bottom:3rem">
+        {questions.map((q, i) => (
+          <div class="surface card-pad" data-reveal style={`--delay:${(i % 2) * 0.06}s;display:flex;gap:1rem;align-items:start`}>
+            <span style="font-family:var(--font-display);font-weight:800;color:var(--wine-soft);font-size:1.4rem">{String(i + 1).padStart(2, '0')}</span>
+            <p style="color:var(--fg)">{q}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="prose" data-reveal>
+        <h3>Das Konzept</h3>
+        <p>Orchester wählen Werke aus kuratierten Listen und proben sie gemeinsam mit Mitgliedern des LBO. Der künstlerische Leiter Björn Bus gibt dabei nicht nur Probetipps für kniffelige Stellen, sondern geht auch auf die Hintergründe und Interpretationsansätze des Werkes ein.</p>
+      </div>
+
+      <div class="grid grid-2" style="margin-top:2rem;align-items:start">
+        <div class="surface card-pad" data-reveal>
+          <h3 style="color:#fff">Sinfonische Blasmusik-Klassiker</h3>
+          <p class="muted" style="margin-top:0.5rem">11 Werke u. a. von Jan van der Roost, Bert Appermont, Ralph Vaughan Williams und Gustav Holst.</p>
+        </div>
+        <div class="surface card-pad" data-reveal style="--delay:.08s">
+          <h3 style="color:#fff">Traditionelle Blasmusik-Klassiker</h3>
+          <p class="muted" style="margin-top:0.5rem">10 Werke in drei Kategorien: 5 Märsche, 3 Polkas und 2 Walzer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</PageLayout>

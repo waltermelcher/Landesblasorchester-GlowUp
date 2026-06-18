@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { url } from '../lib/site';
+---
+<BaseLayout title="Seite nicht gefunden">
+  <section class="section" style="min-height:60vh;display:grid;place-items:center;text-align:center">
+    <div class="wrap">
+      <p class="eyebrow center-x" style="justify-content:center">Fehler 404</p>
+      <h1 class="display">Diese Seite gibt es nicht.</h1>
+      <p class="lead center-x" style="max-width:480px;margin-top:1rem">Vielleicht ist sie umgezogen — zurück zur Startseite oder zu den Konzertterminen.</p>
+      <div class="hero-actions" style="justify-content:center;margin-top:2rem">
+        <a class="btn btn-primary" href={url('/')}>Zur Startseite<span class="arrow">→</span></a>
+        <a class="btn btn-ghost" href={url('/konzerttermine')}>Konzerttermine</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

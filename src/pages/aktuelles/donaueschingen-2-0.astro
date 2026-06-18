@@ -1,0 +1,22 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { url } from '../../lib/site';
+---
+<PageLayout
+  title="Frederik Abel gewinnt Kompositionswettbewerb"
+  section="Aktuelles"
+  eyebrow="Wettbewerb"
+  lead="„Donaueschingen 2.0“: Frederik Abel überzeugt Jury und Publikum mit „Drei-Klänge der Heimat“."
+>
+  <section class="section">
+    <div class="wrap">
+      <img src={url('/images/news-donaueschingen.png')} alt="Donaueschingen 2.0 — Sieger" style="width:100%;border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:2rem" data-reveal />
+      <div class="prose" data-reveal>
+        <p>Mit dem Wettbewerb „Donaueschingen 2.0“ knüpft das Landesblasorchester an die legendären Donaueschinger Musiktage von 1926 an und fördert gezielt neue Werke für sinfonisches Blasorchester.</p>
+        <p>Aus den eingereichten Kompositionen setzte sich Frederik Abel mit „Drei-Klänge der Heimat“ durch. Die Jury lobte die handwerkliche Reife und die eigenständige Klangsprache des jungen Komponisten.</p>
+        <p>Die Uraufführung erfolgt am 18. April 2026 in Donaueschingen.</p>
+        <p><a href={url('/aktuelles/interview-mit-frederik-abel')}>→ Interview mit Frederik Abel</a></p>
+      </div>
+    </div>
+  </section>
+</PageLayout>
