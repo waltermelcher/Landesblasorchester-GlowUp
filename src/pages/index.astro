@@ -42,7 +42,6 @@ const news = [
     <img class="hero-stage-img" src={url('/images/hero.jpg')} alt="Das Landesblasorchester Baden-Württemberg im Konzert vor vollem Saal" />
     <div class="hero-stage-scrim"></div>
     <div class="wrap hero-stage-inner">
-      <p class="eyebrow" data-reveal>Auswahlorchester des BVBW e.V.</p>
       <h1 class="hero-headline" data-reveal style="--delay:.05s">Driven by music.<br />Connected by heart.</h1>
       <p class="hero-claim" data-reveal style="--delay:.14s">Sinfonische Blasmusik der Spitzenklasse — seit 1978.</p>
       <div class="hero-actions" data-reveal style="--delay:.2s">
@@ -236,7 +235,8 @@ const news = [
     position: relative;
     width: 100vw;
     margin-left: calc(50% - 50vw);
-    min-height: clamp(540px, 84vh, 860px);
+    margin-top: -80px; /* Hero unter den (transparenten) Header ziehen */
+    min-height: clamp(600px, 90vh, 920px);
     display: flex;
     align-items: flex-end;
     overflow: hidden;
@@ -262,8 +262,8 @@ const news = [
     font-family: 'Permanent Marker', var(--font-display), cursive;
     color: #fff;
     font-weight: 400;
-    font-size: clamp(2.3rem, 6vw, 4.4rem);
-    line-height: 1.08;
+    font-size: clamp(3rem, 7.5vw, 6rem);
+    line-height: 1.06;
     letter-spacing: 0.01em;
     margin: 1.1rem 0 0;
     text-shadow: 0 2px 22px rgba(0, 0, 0, 0.45);

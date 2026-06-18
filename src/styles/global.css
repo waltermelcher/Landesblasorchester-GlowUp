@@ -227,6 +227,17 @@ strong { color: var(--ink); font-weight: 600; }
 }
 .brand { display: flex; align-items: center; gap: 0.7rem; }
 .brand img { height: 36px; width: auto; }
+.brand .logo-light { display: none; }
+
+/* Startseite: Header überlagert den dunklen Hero — am Top transparent mit heller
+   Schrift & hellem Logo; sobald gescrollt (.scrolled) wieder die normale, helle Leiste. */
+body.home .site-header:not(.scrolled) .nav-link { color: rgba(255, 255, 255, 0.92); }
+body.home .site-header:not(.scrolled) .nav-link:hover,
+body.home .site-header:not(.scrolled) .nav-link.active { color: #fff; border-bottom-color: #fff; }
+body.home .site-header:not(.scrolled) .burger { border-color: rgba(255, 255, 255, 0.55); }
+body.home .site-header:not(.scrolled) .burger span { background: #fff; }
+body.home .site-header:not(.scrolled) .logo-default { display: none; }
+body.home .site-header:not(.scrolled) .logo-light { display: block; }
 
 .nav-list { display: flex; align-items: center; gap: 0.2rem; list-style: none; padding: 0; }
 .nav-item { position: relative; }

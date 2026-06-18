@@ -13,6 +13,10 @@ const fullTitle = title ? `${title} — ${site.name}` : `${site.name} — ${site
 
 // Indexierung: Produktion -> index, Staging/Vorschau -> noindex (siehe lib/site.ts)
 const robots = isProductionBuild ? 'index, follow' : 'noindex, nofollow';
+
+// Startseite: Header überlagert den dunklen Hero (transparente NavBar am Top)
+const norm = (p: string) => p.replace(/\/+$/, '') || '/';
+const isHome = norm(Astro.url.pathname) === norm(url('/'));
 ---
 <!doctype html>
 <html lang="de">
@@ -51,7 +55,7 @@ const robots = isProductionBuild ? 'index, follow' : 'noindex, nofollow';
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=Permanent+Marker&display=swap" rel="stylesheet" />
   </head>
-  <body>
+  <body class={isHome ? 'home' : undefined}>
     <Header />
     <main>
       <slot />
