@@ -2,21 +2,42 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { url } from '../lib/site';
 
+// --- Konzert-Spotlight (Highlight der Saison) -----------------------------
+const spotlight = {
+  day: '18', mon: 'April', yr: '2026',
+  kicker: 'Uraufführung',
+  title: '„Drei-Klänge der Heimat“',
+  place: 'Donaueschingen · Mozart-Saal',
+  meta: 'Werkeinführung 18:00 Uhr · Konzert 19:30 Uhr',
+  text: 'Die Siegerkomposition des LBO-Kompositionswettbewerbs von Frederik Abel erlebt ihre Uraufführung — ein Heimspiel der zeitgenössischen sinfonischen Blasmusik.',
+  img: 'news-drei-klaenge.png',
+};
+
+// --- Weitere Termine ------------------------------------------------------
 const concerts = [
   { day: '29', mon: 'März', yr: '2026', title: 'Werkstattkonzert', place: 'Plochingen · Musikzentrum BW', meta: '13:30 Uhr · Eintritt frei' },
-  { day: '18', mon: 'Apr', yr: '2026', title: 'Uraufführung „Drei-Klänge der Heimat“', place: 'Donaueschingen · Mozart-Saal', meta: 'Einführung 18:00 · Konzert 19:30' },
   { day: '19', mon: 'Apr', yr: '2026', title: 'Sinfonisches Konzert', place: 'Schelklingen · Stadthalle', meta: 'Lehrkonzert 16:00 · Konzert 18:00' },
   { day: '20', mon: 'Jun', yr: '2026', title: 'Bezirksmusikfest', place: 'Sinsheim · Stadthalle', meta: '17:45 Uhr' },
 ];
 
+// --- Eckdaten zum Orchester ----------------------------------------------
+const facts = [
+  { y: '1978', t: 'gegründet mit Prof. Erich Ganzenmüller — erstes Konzert 1980 in Böblingen' },
+  { y: '2004–2013', t: 'Isabelle Ruf-Weber prägt eine Ära des Ensembles' },
+  { y: 'seit 2014', t: 'Björn Bus übernimmt die künstlerische Leitung' },
+];
+
+// --- Aktuelles ------------------------------------------------------------
 const news = [
   { img: 'news-interview-abel.png', tag: 'Interview', title: 'Interview mit Frederik Abel', text: 'Der junge Komponist über seine Siegerkomposition und die Arbeit mit dem LBO.', href: '/aktuelles/interview-mit-frederik-abel' },
   { img: 'news-drei-klaenge.png', tag: 'Uraufführung', title: '„Drei-Klänge der Heimat“ in Donaueschingen', text: 'Die Siegerkomposition wird am 18.04.2026 in Donaueschingen uraufgeführt.', href: '/aktuelles/siegerkomposition-drei-klaenge' },
   { img: 'news-donaueschingen.png', tag: 'Wettbewerb', title: 'Frederik Abel gewinnt Kompositionswettbewerb', text: '„Donaueschingen 2.0“: Frederik Abel überzeugt die Jury und das Publikum.', href: '/aktuelles/donaueschingen-2-0' },
 ];
 ---
-<BaseLayout>
-  <!-- HERO -->
+<BaseLayout
+  description="Das Landesblasorchester Baden-Württemberg — Auswahlorchester des BVBW e.V. Sinfonische Blasmusik der Spitzenklasse seit 1978. Konzerte, Aufnahmen und die Klangfamilie um Björn Bus."
+>
+  <!-- ================= HERO ================= -->
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
@@ -32,7 +53,7 @@ const news = [
 
         <div class="stat-strip" data-reveal style="--delay:.24s">
           <div class="stat"><span class="n">~85</span><span class="l">Musiker:innen</span></div>
-          <div class="stat"><span class="n">96 / 100</span><span class="l">WMC 2017 — dt. Bestwert</span></div>
+          <div class="stat"><span class="n">96 / 100</span><span class="l">WMC Kerkrade 2017 — dt. Bestwert</span></div>
           <div class="stat"><span class="n">1.</span><span class="l">Platz WMC Kerkrade 2005</span></div>
           <div class="stat"><span class="n">18+</span><span class="l">CDs &amp; DVDs</span></div>
         </div>
@@ -50,12 +71,138 @@ const news = [
     </div>
   </section>
 
-  <!-- NEWS -->
-  <section class="section">
+  <!-- ================= KONZERT-SPOTLIGHT + TERMINE ================= -->
+  <section class="section" style="padding-top:0">
     <div class="wrap">
-      <div class="section-head">
-        <p class="eyebrow" data-reveal>Aktuelles</p>
-        <h2 data-reveal>Neuigkeiten aus dem Orchester</h2>
+      <div class="section-head" style="display:flex;justify-content:space-between;align-items:end;max-width:none;gap:1rem;flex-wrap:wrap">
+        <div>
+          <p class="eyebrow" data-reveal>Live erleben</p>
+          <h2 data-reveal>Saison 2026</h2>
+        </div>
+        <a class="btn btn-ghost" href={url('/konzerttermine')} data-reveal>Alle Termine →</a>
+      </div>
+
+      <div class="season">
+        <!-- Spotlight -->
+        <a class="spotlight" href={url('/aktuelles/siegerkomposition-drei-klaenge')} data-reveal>
+          <div class="spotlight-media">
+            <img src={url('/images/' + spotlight.img)} alt={spotlight.title} />
+            <span class="spotlight-kicker">{spotlight.kicker}</span>
+          </div>
+          <div class="spotlight-body">
+            <div class="spotlight-date">
+              <span class="d">{spotlight.day}</span>
+              <span class="m">{spotlight.mon} {spotlight.yr}</span>
+            </div>
+            <h3>{spotlight.title}</h3>
+            <p class="where">{spotlight.place} · {spotlight.meta}</p>
+            <p>{spotlight.text}</p>
+            <span class="link-wine more">Zum Konzert →</span>
+          </div>
+        </a>
+
+        <!-- Weitere Termine -->
+        <div class="upcoming">
+          <p class="upcoming-head">Weitere Termine</p>
+          {concerts.map((c, i) => (
+            <a class="up-row" href={url('/konzerttermine')} data-reveal style={`--delay:${i * 0.06}s`}>
+              <span class="up-date"><b>{c.day}</b> {c.mon} {c.yr}</span>
+              <span class="up-main">
+                <span class="up-title">{c.title}</span>
+                <span class="up-meta">{c.place} · {c.meta}</span>
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ÜBER DAS ORCHESTER ================= -->
+  <section class="section" style="padding-top:0">
+    <div class="wrap about-grid">
+      <div class="about-media" data-reveal>
+        <img src={url('/images/bjoern-bus-orchestra.jpg')} alt="Das Landesblasorchester unter der Leitung von Björn Bus" />
+      </div>
+      <div data-reveal style="--delay:.08s">
+        <p class="eyebrow">Über das LBO</p>
+        <h2 style="margin-top:0.7rem">Eines der erfolgreichsten Blasorchester Deutschlands</h2>
+        <p style="margin-top:1.1rem">Das Landesblasorchester Baden-Württemberg ist das Auswahlorchester des Blasmusikverbandes Baden-Württemberg e.V. Rund 85 hochqualifizierte Musiker:innen treffen sich jährlich zu intensiven Probenwochenenden und erarbeiten Programme aus Originalkompositionen, klassischen Bearbeitungen, Uraufführungen und Kammermusik — vielfach international ausgezeichnet.</p>
+
+        <ul class="facts">
+          {facts.map((f) => (
+            <li><span class="fy">{f.y}</span><span class="ft">{f.t}</span></li>
+          ))}
+        </ul>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href={url('/ueber-uns')}>Unsere Geschichte<span class="arrow">→</span></a>
+          <a class="btn btn-ghost" href={url('/vorstand')}>Vorstand &amp; Team</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PULL-QUOTE ================= -->
+  <section class="quote-band">
+    <div class="wrap quote-grid">
+      <div class="quote-media" data-reveal>
+        <img src={url('/images/lbo-probe.jpg')} alt="Probenarbeit des Landesblasorchesters" />
+      </div>
+      <blockquote data-reveal style="--delay:.08s">
+        <p class="q">„Aus Liebe zur Musik.“</p>
+        <p class="q-sub">Vier Probenwochenenden im Jahr, ein gemeinsamer Anspruch: sinfonische Blasmusik auf höchstem Niveau — getragen von Menschen, die diese Leidenschaft teilen.</p>
+        <a class="link-wine more" href={url('/lbo-hautnah')}>LBO-hautnah erleben →</a>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ================= KÜNSTLERISCHE LEITUNG ================= -->
+  <section class="section">
+    <div class="wrap conductor-grid">
+      <div data-reveal>
+        <p class="eyebrow">Künstlerische Leitung</p>
+        <h2 style="margin-top:0.7rem">Björn Bus</h2>
+        <p style="margin-top:1.1rem">Seit 2014 prägt Björn Bus den unverwechselbaren Klang des Landesblasorchesters Baden-Württemberg. Mit feinem Gespür für Programmdramaturgie verbindet er Originalliteratur, Klassik-Bearbeitungen und Uraufführungen zu Konzerten, die fordern und berühren.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href={url('/kuenstlerische-leitung')}>Zur künstlerischen Leitung<span class="arrow">→</span></a>
+        </div>
+      </div>
+      <div class="conductor-media" data-reveal style="--delay:.08s">
+        <img src={url('/images/bjoern-bus-portrait.jpg')} alt="Björn Bus, künstlerischer Leiter des LBO" />
+        <div class="conductor-badge">
+          <span class="big">seit 2014</span>
+          <span class="small">Chefdirigent</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WILDFLOWERS / DISKOGRAFIE ================= -->
+  <section class="section" style="padding-top:0">
+    <div class="wrap wf-grid">
+      <img class="wf-cover" src={url('/images/wildflowers-cover.png')} alt="Wildflowers Albumcover" data-reveal />
+      <div data-reveal style="--delay:.08s">
+        <span class="tag">Neue Aufnahme · 2024</span>
+        <h2 style="margin:0.9rem 0 0.6rem">Wildflowers — junge Werke aus Europa</h2>
+        <p>Zusammengestellt für die WASBE-Konferenz 2024 im südkoreanischen Gwangju: sechs Werke, jedes nach 2014 entstanden, jedes aus einem anderen europäischen Land. Live aufgenommen in der Stadthalle Göppingen — das jüngste Kapitel einer Diskografie von über 18 Aufnahmen.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href={url('/wildflowers')}>Album entdecken<span class="arrow">→</span></a>
+          <a class="btn btn-ghost" href={url('/cds')}>Alle CDs &amp; DVDs</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= AKTUELLES ================= -->
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head" style="display:flex;justify-content:space-between;align-items:end;max-width:none;gap:1rem;flex-wrap:wrap">
+        <div>
+          <p class="eyebrow" data-reveal>Aktuelles</p>
+          <h2 data-reveal>Neuigkeiten aus dem Orchester</h2>
+        </div>
+        <a class="btn btn-ghost" href={url('/presse')} data-reveal>Zur Presse →</a>
       </div>
       <div class="grid grid-3">
         {news.map((n, i) => (
@@ -73,100 +220,146 @@ const news = [
     </div>
   </section>
 
-  <!-- CONCERTS -->
+  <!-- ================= NEWSLETTER + CTA ================= -->
   <section class="section" style="padding-top:0">
-    <div class="wrap">
-      <div class="section-head" style="display:flex;justify-content:space-between;align-items:end;max-width:none;gap:1rem;flex-wrap:wrap">
-        <div>
-          <p class="eyebrow" data-reveal>Live erleben</p>
-          <h2 data-reveal>Nächste Konzerte</h2>
-        </div>
-        <a class="btn btn-ghost" href={url('/konzerttermine')} data-reveal>Alle Termine →</a>
+    <div class="wrap connect-grid">
+      <!-- Newsletter -->
+      <div class="panel newsletter" data-reveal>
+        <p class="eyebrow">Bleib informiert</p>
+        <h3 style="margin:0.6rem 0 0.4rem;font-size:1.5rem;color:var(--ink)">Der LBO-Newsletter</h3>
+        <p style="font-size:0.95rem">Konzerttermine, neue Aufnahmen und Geschichten aus dem Orchester — direkt in dein Postfach.</p>
+        <form class="nl-form" action={url('/newsletter')} method="get">
+          <input class="field" type="email" name="email" placeholder="deine@email.de" aria-label="E-Mail-Adresse" required />
+          <button class="btn btn-primary" type="submit">Abonnieren<span class="arrow">→</span></button>
+        </form>
+        <p class="muted" style="font-size:0.8rem;margin-top:0.6rem">Jederzeit abbestellbar. Kein Spam.</p>
       </div>
-      <div class="stack">
-        {concerts.map((c, i) => (
-          <div class="concert-row" data-reveal style={`--delay:${i * 0.06}s`}>
-            <div class="concert-date">
-              <div class="day">{c.day}</div>
-              <div class="mon">{c.mon}</div>
-              <div class="yr">{c.yr}</div>
-            </div>
-            <div class="concert-main">
-              <h3>{c.title}</h3>
-              <div class="meta">{c.place} · {c.meta}</div>
-            </div>
-            <a class="btn btn-ghost concert-cta" href={url('/konzerttermine')}>Details</a>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
 
-  <!-- ABOUT / CONDUCTOR -->
-  <section class="section" style="padding-top:0">
-    <div class="wrap">
-      <div class="surface" style="overflow:hidden">
-        <div class="hero-grid" style="align-items:center">
-          <div style="padding:clamp(1.5rem,4vw,2.5rem) clamp(1.5rem,4vw,2.5rem) clamp(1.5rem,4vw,2.5rem) 0">
-            <p class="eyebrow" data-reveal>Über das LBO</p>
-            <h2 data-reveal style="margin-top:0.7rem">Eines der erfolgreichsten Blasorchester Deutschlands</h2>
-            <p data-reveal style="margin-top:1.1rem">Gegründet 1978, vereint das Landesblasorchester Baden-Württemberg rund 85 hochqualifizierte Musiker:innen aus dem ganzen Land. In intensiven Probenphasen entstehen Programme von Originalkompositionen über Klassik-Bearbeitungen bis zu Uraufführungen — preisgekrönt auf den großen internationalen Bühnen.</p>
-            <div class="hero-actions" data-reveal>
-              <a class="btn btn-primary" href={url('/ueber-uns')}>Unsere Geschichte<span class="arrow">→</span></a>
-              <a class="btn btn-ghost" href={url('/kuenstlerische-leitung')}>Künstlerische Leitung</a>
-            </div>
-          </div>
-          <div style="min-height:340px;position:relative">
-            <img src={url('/images/bjoern-bus-orchestra.jpg')} alt="Björn Bus dirigiert das LBO" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- WILDFLOWERS FEATURE -->
-  <section class="section" style="padding-top:0">
-    <div class="wrap">
-      <div class="surface card-pad" style="display:grid;grid-template-columns:280px 1fr;gap:clamp(1.5rem,4vw,3rem);align-items:center">
-        <img src={url('/images/wildflowers-cover.png')} alt="Wildflowers Albumcover" style="box-shadow:var(--shadow)" data-reveal />
-        <div data-reveal style="--delay:.08s">
-          <span class="tag">Neue Aufnahme · 2024</span>
-          <h2 style="margin:0.9rem 0 0.6rem">Wildflowers — Junge Werke aus Europa</h2>
-          <p>Zusammengestellt für die WASBE-Konferenz 2024 im südkoreanischen Gwangju: sechs Werke, jedes nach 2014 entstanden, jedes aus einem anderen europäischen Land. Live aufgenommen in der Stadthalle Göppingen.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href={url('/wildflowers')}>Album entdecken<span class="arrow">→</span></a>
-            <a class="btn btn-ghost" href={url('/cds')}>Alle CDs &amp; DVDs</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PARTNERS -->
-  <section class="section-tight">
-    <div class="wrap center">
-      <p class="eyebrow center-x" style="justify-content:center" data-reveal>Getragen von</p>
-      <div class="pill-row" style="justify-content:center;margin-top:1.2rem" data-reveal>
-        <span class="tag">Blasmusikverband Baden-Württemberg e.V.</span>
-        <span class="tag">Landesmusikverband Baden-Württemberg</span>
-        <span class="tag">Freunde des LBO</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="section" style="padding-top:0">
-    <div class="wrap">
-      <div class="cta-band" data-reveal>
+      <!-- CTA -->
+      <div class="cta-band" data-reveal style="--delay:.08s">
         <p class="eyebrow center-x" style="justify-content:center">Mitspielen &amp; Unterstützen</p>
         <h2>Werde Teil der Klangfamilie</h2>
-        <p class="lead center-x" style="max-width:560px">Ob als Musiker:in im Probespiel, als Förderer oder mit unserem Newsletter — bleib dem LBO nah.</p>
+        <p class="lead center-x" style="max-width:520px">Ob als Musiker:in im Probespiel oder als Förderer — bleib dem LBO nah.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href={url('/mitglied-werden')}>Mitglied werden<span class="arrow">→</span></a>
           <a class="btn btn-ghost" href={url('/foerderverein')}>Förderverein</a>
-          <a class="btn btn-ghost" href={url('/newsletter')}>Newsletter abonnieren</a>
         </div>
       </div>
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  /* ---- Saison: Spotlight + Termine ---- */
+  .season {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+  }
+  .spotlight {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 2px solid var(--ink);
+    transition: border-color 0.4s var(--ease);
+  }
+  .spotlight:hover { border-top-color: var(--wine); }
+  .spotlight-media { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--paper-2); }
+  .spotlight-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s var(--ease); }
+  .spotlight:hover .spotlight-media img { transform: scale(1.05); }
+  .spotlight-kicker {
+    position: absolute; top: 0; left: 0;
+    background: var(--wine); color: #fff;
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+    padding: 0.4rem 0.7rem;
+  }
+  .spotlight-body { padding: 1.6rem 0 1.6rem clamp(1.2rem, 2.5vw, 2rem); }
+  .spotlight-date { display: flex; align-items: baseline; gap: 0.6rem; margin-bottom: 0.7rem; }
+  .spotlight-date .d { font-family: var(--font-display); font-weight: 800; font-size: 2.6rem; line-height: 1; color: var(--ink); }
+  .spotlight-date .m { text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.78rem; color: var(--wine); }
+  .spotlight-body h3 { font-size: clamp(1.4rem, 2.4vw, 1.9rem); color: var(--ink); transition: color 0.3s; }
+  .spotlight:hover .spotlight-body h3 { color: var(--wine); }
+  .spotlight-body .where { color: var(--ink-soft); font-size: 0.95rem; margin: 0.5rem 0 0.9rem; }
+  .more { display: inline-block; margin-top: 1rem; font-weight: 600; }
+
+  .upcoming-head {
+    font-family: var(--font-body); font-weight: 700; font-size: 0.76rem;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-mut);
+    padding-bottom: 0.9rem; border-bottom: 2px solid var(--ink);
+  }
+  .up-row {
+    display: grid; grid-template-columns: auto 1fr; gap: 0.4rem 1.2rem; align-items: baseline;
+    padding: 1.1rem 0; border-bottom: 1px solid var(--line);
+    transition: padding-left 0.35s var(--ease);
+  }
+  .up-row:hover { padding-left: 0.5rem; }
+  .up-date { font-size: 0.82rem; color: var(--wine); letter-spacing: 0.04em; white-space: nowrap; }
+  .up-date b { font-family: var(--font-display); font-size: 1.05rem; color: var(--ink); }
+  .up-title { display: block; font-family: var(--font-display); font-weight: 700; color: var(--ink); font-size: 1.05rem; }
+  .up-row:hover .up-title { color: var(--wine); }
+  .up-meta { display: block; font-size: 0.85rem; color: var(--ink-mut); margin-top: 0.15rem; }
+
+  @media (max-width: 860px) {
+    .season { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .spotlight { grid-template-columns: 1fr; }
+    .spotlight-body { padding: 1.3rem 0 0; }
+  }
+
+  /* ---- Über das Orchester ---- */
+  .about-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .about-media { aspect-ratio: 5 / 4; overflow: hidden; box-shadow: var(--shadow); }
+  .about-media img { width: 100%; height: 100%; object-fit: cover; }
+  .facts { list-style: none; padding: 0; margin: 1.8rem 0; }
+  .facts li { display: grid; grid-template-columns: 130px 1fr; gap: 1.2rem; padding: 0.9rem 0; border-top: 1px solid var(--line); align-items: baseline; }
+  .facts li:last-child { border-bottom: 1px solid var(--line); }
+  .facts .fy { font-family: var(--font-display); font-weight: 800; color: var(--wine); font-size: 1rem; letter-spacing: -0.01em; }
+  .facts .ft { font-size: 0.92rem; color: var(--ink-soft); }
+  @media (max-width: 860px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .facts li { grid-template-columns: 110px 1fr; gap: 0.8rem; }
+  }
+
+  /* ---- Pull-Quote-Band (dunkel, als Akzent) ---- */
+  .quote-band { background: #16130f; color: #fff; padding-block: clamp(3rem, 7vw, 5.5rem); }
+  .quote-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .quote-media { aspect-ratio: 4 / 3; overflow: hidden; }
+  .quote-media img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.15); }
+  .quote-band blockquote { margin: 0; }
+  .quote-band .q { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.9rem, 4vw, 3rem); line-height: 1.1; letter-spacing: -0.03em; color: #fff; }
+  .quote-band .q-sub { color: rgba(255,255,255,0.78); font-size: clamp(1rem, 1.6vw, 1.2rem); line-height: 1.6; margin-top: 1.1rem; max-width: 46ch; }
+  .quote-band .more { color: #d98fa0; margin-top: 1.4rem; }
+  .quote-band .more:hover { color: #fff; }
+  @media (max-width: 760px) { .quote-grid { grid-template-columns: 1fr; } }
+
+  /* ---- Künstlerische Leitung ---- */
+  .conductor-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
+  .conductor-media { position: relative; aspect-ratio: 4 / 5; overflow: hidden; box-shadow: var(--shadow); }
+  .conductor-media img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+  .conductor-badge {
+    position: absolute; left: -16px; bottom: 28px;
+    background: var(--paper); border-left: 4px solid var(--wine);
+    padding: 0.8rem 1.1rem; box-shadow: var(--shadow);
+    display: flex; flex-direction: column;
+  }
+  .conductor-badge .big { font-family: var(--font-display); font-weight: 800; font-size: 1.4rem; color: var(--ink); }
+  .conductor-badge .small { font-size: 0.76rem; color: var(--ink-mut); letter-spacing: 0.04em; }
+  @media (max-width: 860px) {
+    .conductor-grid { grid-template-columns: 1fr; }
+    .conductor-media { max-width: 420px; }
+  }
+
+  /* ---- Wildflowers ---- */
+  .wf-grid { display: grid; grid-template-columns: 280px 1fr; gap: clamp(1.5rem, 4vw, 3rem); align-items: center; }
+  .wf-cover { box-shadow: var(--shadow); width: 100%; }
+  @media (max-width: 620px) { .wf-grid { grid-template-columns: 1fr; } .wf-cover { max-width: 280px; } }
+
+  /* ---- Newsletter + CTA ---- */
+  .connect-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.5rem, 4vw, 2.6rem); align-items: stretch; }
+  .newsletter { display: flex; flex-direction: column; justify-content: center; }
+  .nl-form { display: flex; gap: 0.6rem; margin-top: 1.2rem; flex-wrap: wrap; }
+  .nl-form .field { flex: 1 1 200px; }
+  .connect-grid .cta-band { padding: clamp(2rem, 4vw, 3rem); display: flex; flex-direction: column; justify-content: center; }
+  @media (max-width: 860px) { .connect-grid { grid-template-columns: 1fr; } }
+</style>
