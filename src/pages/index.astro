@@ -236,7 +236,8 @@ const news = [
     width: 100vw;
     margin-left: calc(50% - 50vw);
     margin-top: -80px; /* Hero unter den (transparenten) Header ziehen */
-    min-height: clamp(600px, 90vh, 920px);
+    min-height: 100vh;
+    min-height: 100dvh; /* Full Screen, mobil ohne Adressleisten-Sprung */
     display: flex;
     align-items: flex-end;
     overflow: hidden;
