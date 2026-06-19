@@ -2,20 +2,18 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { url } from '../lib/site';
 
-// --- Konzert-Spotlight (Highlight der Saison) -----------------------------
-const spotlight = {
-  day: '18', mon: 'April', yr: '2026',
-  kicker: 'Uraufführung',
+// --- Programm-Schwerpunkt: titelgebendes Werk der Saison -----------------
+const program = {
+  tag: 'Uraufführung · 18. April 2026',
   title: '„Drei-Klänge der Heimat“',
-  place: 'Donaueschingen · Mozart-Saal',
-  meta: 'Werkeinführung 18:00 Uhr · Konzert 19:30 Uhr',
-  text: 'Die Siegerkomposition des LBO-Kompositionswettbewerbs von Frederik Abel erlebt ihre Uraufführung — ein Heimspiel der zeitgenössischen sinfonischen Blasmusik.',
   img: 'news-drei-klaenge.png',
+  href: '/aktuelles/siegerkomposition-drei-klaenge',
 };
 
-// --- Weitere Termine ------------------------------------------------------
+// --- Alle Konzerttermine der Saison (chronologisch) ---------------------
 const concerts = [
   { day: '29', mon: 'März', yr: '2026', title: 'Werkstattkonzert', place: 'Plochingen · Musikzentrum BW', meta: '13:30 Uhr · Eintritt frei' },
+  { day: '18', mon: 'Apr', yr: '2026', title: 'Uraufführung „Drei-Klänge der Heimat“', place: 'Donaueschingen · Mozart-Saal', meta: 'Werkeinführung 18:00 · Konzert 19:30' },
   { day: '19', mon: 'Apr', yr: '2026', title: 'Sinfonisches Konzert', place: 'Schelklingen · Stadthalle', meta: 'Lehrkonzert 16:00 · Konzert 18:00' },
   { day: '20', mon: 'Jun', yr: '2026', title: 'Bezirksmusikfest', place: 'Sinsheim · Stadthalle', meta: '17:45 Uhr' },
 ];
@@ -63,27 +61,21 @@ const news = [
       </div>
 
       <div class="season">
-        <!-- Spotlight -->
-        <a class="spotlight" href={url('/aktuelles/siegerkomposition-drei-klaenge')} data-reveal>
-          <div class="spotlight-media">
-            <img src={url('/images/' + spotlight.img)} alt={spotlight.title} />
-            <span class="spotlight-kicker">{spotlight.kicker}</span>
+        <!-- Programm: titelgebendes Werk -->
+        <div class="program" data-reveal>
+          <span class="tag">{program.tag}</span>
+          <h3 class="program-title">{program.title}</h3>
+          <div class="program-media">
+            <img src={url('/images/' + program.img)} alt={program.title} />
           </div>
-          <div class="spotlight-body">
-            <div class="spotlight-date">
-              <span class="d">{spotlight.day}</span>
-              <span class="m">{spotlight.mon} {spotlight.yr}</span>
-            </div>
-            <h3>{spotlight.title}</h3>
-            <p class="where">{spotlight.place} · {spotlight.meta}</p>
-            <p>{spotlight.text}</p>
-            <span class="link-wine more">Zum Konzert →</span>
-          </div>
-        </a>
+          <p>Das titelgebende Werk der Saison stammt aus dem LBO-Kompositionswettbewerb: Frederik Abel überzeugte Jury und Publikum mit „Drei-Klänge der Heimat“. Am 18. April 2026 erlebt das Stück im Mozart-Saal in Donaueschingen seine Uraufführung — ein Heimspiel der zeitgenössischen sinfonischen Blasmusik.</p>
+          <p>Der Titel ist Programm: drei klangliche Annäherungen an das, was Heimat ausmacht — von weiten, festlichen Klangflächen bis zu kammermusikalisch feinen Momenten. Eingebettet in eine Saison aus vier Konzerten zwischen Werkstattbühne und großem Saal.</p>
+          <a class="link-wine more" href={url(program.href)}>Zum Konzert &amp; zur Komposition →</a>
+        </div>
 
-        <!-- Weitere Termine -->
+        <!-- Alle Konzerttermine -->
         <div class="upcoming">
-          <p class="upcoming-head">Weitere Termine</p>
+          <p class="upcoming-head">Alle Konzerttermine</p>
           {concerts.map((c, i) => (
             <a class="up-row" href={url('/konzerttermine')} data-reveal style={`--delay:${i * 0.06}s`}>
               <span class="up-date"><b>{c.day}</b> {c.mon} {c.yr}</span>
@@ -270,41 +262,22 @@ const news = [
     text-shadow: 0 2px 22px rgba(0, 0, 0, 0.45);
   }
   .hero-stage-inner .hero-claim { color: rgba(255, 255, 255, 0.9); margin-top: 1.1rem; }
-  .hero-stage-inner .eyebrow { color: #eab6c1; }
-  .hero-stage-inner .eyebrow::before { background: #eab6c1; }
   .hero-stage-inner .btn-ghost { border-color: rgba(255, 255, 255, 0.55); color: #fff; }
   .hero-stage-inner .btn-ghost:hover { border-color: #fff; background: rgba(255, 255, 255, 0.12); color: #fff; }
 
-  /* ---- Saison: Spotlight + Termine ---- */
+  /* ---- Saison: Programm-Schwerpunkt + alle Termine ---- */
   .season {
     display: grid;
-    grid-template-columns: 1.4fr 1fr;
+    grid-template-columns: 1.15fr 0.85fr;
     gap: clamp(2rem, 5vw, 4rem);
     align-items: start;
   }
-  .spotlight {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    border-top: 2px solid var(--ink);
-    transition: border-color 0.4s var(--ease);
-  }
-  .spotlight:hover { border-top-color: var(--wine); }
-  .spotlight-media { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--paper-2); }
-  .spotlight-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s var(--ease); }
-  .spotlight:hover .spotlight-media img { transform: scale(1.05); }
-  .spotlight-kicker {
-    position: absolute; top: 0; left: 0;
-    background: var(--wine); color: #fff;
-    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
-    padding: 0.4rem 0.7rem;
-  }
-  .spotlight-body { padding: 1.6rem 0 1.6rem clamp(1.2rem, 2.5vw, 2rem); }
-  .spotlight-date { display: flex; align-items: baseline; gap: 0.6rem; margin-bottom: 0.7rem; }
-  .spotlight-date .d { font-family: var(--font-display); font-weight: 800; font-size: 2.6rem; line-height: 1; color: var(--ink); }
-  .spotlight-date .m { text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.78rem; color: var(--wine); }
-  .spotlight-body h3 { font-size: clamp(1.4rem, 2.4vw, 1.9rem); color: var(--ink); transition: color 0.3s; }
-  .spotlight:hover .spotlight-body h3 { color: var(--wine); }
-  .spotlight-body .where { color: var(--ink-soft); font-size: 0.95rem; margin: 0.5rem 0 0.9rem; }
+  .program { border-top: 2px solid var(--ink); padding-top: 1.5rem; }
+  .program-title { font-size: clamp(1.6rem, 3vw, 2.4rem); color: var(--ink); margin: 0.9rem 0 1.3rem; }
+  .program-media { aspect-ratio: 16 / 10; overflow: hidden; background: var(--paper-2); margin-bottom: 1.4rem; }
+  .program-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s var(--ease); }
+  .program:hover .program-media img { transform: scale(1.03); }
+  .program p { margin-bottom: 0.9rem; }
   .more { display: inline-block; margin-top: 1rem; font-weight: 600; }
 
   .upcoming-head {
@@ -326,10 +299,6 @@ const news = [
 
   @media (max-width: 860px) {
     .season { grid-template-columns: 1fr; }
-  }
-  @media (max-width: 560px) {
-    .spotlight { grid-template-columns: 1fr; }
-    .spotlight-body { padding: 1.3rem 0 0; }
   }
 
   /* ---- Über das Orchester ---- */
